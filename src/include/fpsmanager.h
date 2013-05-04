@@ -7,7 +7,7 @@ public:
 	int tick(float time);
 	void inc();
 	void reset();
-	float getActualFPS();
+	float getActualFps();
 private:
 	float fps_;
 	float period_;
