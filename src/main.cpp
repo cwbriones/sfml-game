@@ -2,7 +2,7 @@
 
 int main(int argc, char** args){
 
-	Game game(800, 600, "My SFML Game", 60.0f);
+	Game game(640, 480, "My SFML Game", 60.0f);
 	game.gameLoop();
 
 	return 0;

@@ -1,8 +1,13 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <SFML/Graphics.hpp>
 #include "fpsmanager.h"
+#include "state.h"
+
+#include <vector>
+
+#include <SFML/Graphics.hpp>
+#include <boost/smart_ptr.hpp>
 
 class Game {
 public:
@@ -10,14 +15,18 @@ public:
 	~Game();
 
 	void gameLoop();
-	void render();
+	void render(); 
+    void update();
+    
+    void enterState(boost::shared_ptr<GameState> newState);
 private:
 	sf::RenderWindow window_;
 	
 	const int width_;
 	const int height_;
 	const char* title_;
-	FPSManager fpsManager_;
+	FpsManager fpsManager_;
+    boost::shared_ptr<GameState> currentState_;
 };
 
 #endif //GAME_H

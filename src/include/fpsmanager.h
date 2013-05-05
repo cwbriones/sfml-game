@@ -1,19 +1,27 @@
 #ifndef FPS_MANAGER
 #define FPS_MANAGER
 
-class FPSManager {
+#include <SFML/Graphics.hpp>
+
+class FpsManager {
 public:
-	FPSManager(float fps);
-	int tick(float time);
-	void inc();
+	FpsManager(float fps);
+
+	int tick();
 	void reset();
-	float getActualFps();
+
+	float getActualFps() const;
+    sf::Time getTotalTime() const;
+    sf::Time getPeriod() const;
 private:
+    sf::Clock clock_;
+    sf::Time totalTime_;
+
+    sf::Time period_;
+
 	float fps_;
-	float period_;
 	int frames_;
-	float lastTime_;
-	float totalTime_;
+    int skips_;
 
 	float actualFps_;
 };

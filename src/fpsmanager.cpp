@@ -1,30 +1,40 @@
 #include "fpsmanager.h"
 
-FPSManager::FPSManager(float fps) : fps_(fps), period_(1.0/fps){
+FpsManager::FpsManager(float fps) : fps_(fps){
+
 	frames_ = 0;
-	lastTime_ = 0;
-	totalTime_ = 0;
+    skips_ = 0;
+    totalTime_ = sf::Time::Zero;
+    clock_.restart();
+
+    period_ = sf::milliseconds(0.9f*1000.0f/fps_);
 }
 
-int FPSManager::tick(float delta){
-	totalTime_ += delta;
+int FpsManager::tick(){ 
+    sf::Time elapsed = clock_.restart();
+
+	totalTime_ += elapsed;
     frames_++;
-
-	return int(delta * period_);	//updates missed
+    
+	return static_cast<int>(elapsed.asSeconds()/period_.asSeconds());	//updates missed
 }
 
-void FPSManager::reset(){
-	actualFps_ = frames_/totalTime_;
+void FpsManager::reset(){
+	actualFps_ = frames_/totalTime_.asSeconds();
 
+    totalTime_ = sf::Time::Zero;
 	frames_ = 0;
-	totalTime_ = 0;
 }
 
-void FPSManager::inc(){
-	frames_++;
+
+sf::Time FpsManager::getTotalTime() const {
+    return totalTime_;
 }
 
-float FPSManager::getActualFps(){
+sf::Time FpsManager::getPeriod() const {
+    return period_;
+}
 
+float FpsManager::getActualFps() const {
 	return actualFps_;
 }
