@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  mainmenustate.h
+ *       Filename:  state.h
  *
  *    Description:  
  *
  *        Version:  1.0
- *        Created:  05/04/2013 19:48:12
+ *        Created:  05/04/2013 16:19:08
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -15,19 +15,18 @@
  *
  * =====================================================================================
  */
+#ifndef GAMESTATE_H
+#define GAMESTATE_H
 
-#ifndef MAIN_MENU_STATE
-#define MAIN_MENU_STATE
+#include <SFML/Graphics.hpp>
+#include <boost/smart_ptr.hpp>
 
-#include "state.h"
-
-#include <SFML/graphics.hpp>
-
-class MainMenuState : public GameState {
-    public:
-        void update();
-        void render(sf::RenderWindow* window);
-        void initialize();
+class BasicGameState {
+public:
+    virtual void initialize() = 0;
+    virtual void update() = 0;
+    virtual void render(sf::RenderTarget* target) = 0;
+private:
 };
 
-#endif
+#endif // GAMESTATE_H

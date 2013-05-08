@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  state.h
+ *       Filename:  state.cpp
  *
  *    Description:  
  *
  *        Version:  1.0
- *        Created:  05/04/2013 16:19:08
+ *        Created:  05/07/2013 20:55:10
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -15,17 +15,5 @@
  *
  * =====================================================================================
  */
-#ifndef GAMESTATE_H
-#define GAMESTATE_H
+#include <stdlib.h>
 
-#include <SFML/Graphics.hpp>
-
-class GameState {
-
-public:
-    virtual void initialize() = 0;
-    virtual void update() = 0;
-    virtual void render(sf::RenderWindow* window) = 0;
-};
-
-#endif // GAMESTATE_H

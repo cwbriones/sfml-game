@@ -18,12 +18,23 @@
 
 #include "mainmenustate.h"
 
+#include <cstdlib>
+
 void MainMenuState::initialize(){
+    if(!font_.loadFromFile("../res/Arial.ttf")){
+        exit(1);
+    }
+    text_.setFont(font_);
+    text_.setString("This is the main menu!");
+    text_.setCharacterSize(24);
+    text_.setColor(sf::Color::Red);
+    text_.setStyle(sf::Text::Bold);
+    text_.setPosition(50,50);
 }
 
 void MainMenuState::update(){
 }
 
-void MainMenuState::render(sf::RenderWindow* window){
-    window->clear(sf::Color::Green);
+void MainMenuState::render(sf::RenderTarget* target){
+    target->draw(text_);
 }

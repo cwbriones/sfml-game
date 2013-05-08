@@ -4,29 +4,33 @@
 #include "fpsmanager.h"
 #include "state.h"
 
-#include <vector>
+#include <string>
 
 #include <SFML/Graphics.hpp>
 #include <boost/smart_ptr.hpp>
 
 class Game {
 public:
-	Game(int width, int height, char* title, float fps);
+	Game(int width, int height, std::string title, float fps);
 	~Game();
 
 	void gameLoop();
 	void render(); 
+    void renderDebug();
     void update();
     
-    void enterState(boost::shared_ptr<GameState> newState);
+    void enterState(BasicGameState* newState);
+
+    const int WIDTH;
+	const int HEIGHT;
+
+	const std::string TITLE;
 private:
 	sf::RenderWindow window_;
-	
-	const int width_;
-	const int height_;
-	const char* title_;
+    sf::Font debugFont_;
+    
 	FpsManager fpsManager_;
-    boost::shared_ptr<GameState> currentState_;
+    BasicGameState* currentState_;
 };
 
 #endif //GAME_H
