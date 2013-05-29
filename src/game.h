@@ -2,7 +2,7 @@
 #define GAME_H
 
 #include "fpsmanager.h"
-#include "state.h"
+#include "StateManager.h"
 
 #include <string>
 
@@ -16,10 +16,10 @@ public:
 
 	void gameLoop();
 	void render(); 
-    void renderDebug();
-    void update();
-    
-    void enterState(BasicGameState* newState);
+    void renderStats();
+    void update(sf::Time delta);
+    void cleanup();
+    bool closeRequested(sf::Event* event);
 
     const int WIDTH;
 	const int HEIGHT;
@@ -30,7 +30,9 @@ private:
     sf::Font debugFont_;
     
 	FpsManager fpsManager_;
-    BasicGameState* currentState_;
+	StateManager stateManager_;
+
+	bool showDebug_;
 };
 
 #endif //GAME_H

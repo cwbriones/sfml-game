@@ -1,26 +1,18 @@
-/*
- * =====================================================================================
- *
- *       Filename:  mainmenustate.cpp
- *
- *    Description:  
- *
- *        Version:  1.0
- *        Created:  05/04/2013 19:48:12
- *       Revision:  none
- *       Compiler:  gcc
- *
- *         Author:  Christian Briones (cb), cwbriones@berkeley.edu
- *   Organization:  
- *
- * =====================================================================================
- */
+#include "MainMenuState.h"
+#include "GameplayState.h"
+#include "StateManager.h"
 
-#include "mainmenustate.h"
+#include <SFML/Window/Keyboard.hpp>
 
+#include <iostream>
 #include <cstdlib>
 
-void MainMenuState::initialize(){
+MainMenuState::MainMenuState(){
+    id_ = GameState::MAIN_MENU;
+}
+
+void MainMenuState::onEnter(){
+    std::cout << "Entering: Menu" << std::endl;
     if(!font_.loadFromFile("../res/Arial.ttf")){
         exit(1);
     }
@@ -32,7 +24,26 @@ void MainMenuState::initialize(){
     text_.setPosition(50,50);
 }
 
-void MainMenuState::update(){
+void MainMenuState::onExit(){
+    std::cout << "Exiting: Menu" << std::endl;
+}
+
+void MainMenuState::onHidden(){}
+
+void MainMenuState::onRevealed(){}
+
+void MainMenuState::keyPressed(int keycode){
+    if (keycode == sf::Keyboard::Space){
+        manager_->clearToState(new GameplayState());
+    }
+}
+
+void MainMenuState::keyReleased(int keycode){
+
+}
+
+void MainMenuState::update(sf::Time delta){
+
 }
 
 void MainMenuState::render(sf::RenderTarget* target){

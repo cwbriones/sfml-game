@@ -1,13 +1,13 @@
-#ifndef MAIN_MENU_STATE
-#define MAIN_MENU_STATE
+#ifndef GAMEPLAY_STATE
+#define GAMEPLAY_STATE
 
 #include "State.h"
 
 #include <SFML/graphics.hpp>
 
-class MainMenuState : public GameState {
+class GameplayState : public GameState {
     public:
-        MainMenuState();
+        GameplayState();
         void update(sf::Time delta);
         void render(sf::RenderTarget* target);
         
@@ -19,9 +19,11 @@ class MainMenuState : public GameState {
 
         void keyPressed(int keycode);
         void keyReleased(int keycode);
+        
+        bool readyForClose();
     private:
         sf::Font font_;
         sf::Text text_;
 };
 
-#endif //MAIN_MENU_STATE
+#endif //GAMEPLAY_STATE

@@ -1,32 +1,41 @@
-/*
- * =====================================================================================
- *
- *       Filename:  state.h
- *
- *    Description:  
- *
- *        Version:  1.0
- *        Created:  05/04/2013 16:19:08
- *       Revision:  none
- *       Compiler:  gcc
- *
- *         Author:  Christian Briones (cb), cwbriones@berkeley.edu
- *   Organization:  
- *
- * =====================================================================================
- */
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
 #include <SFML/Graphics.hpp>
-#include <boost/smart_ptr.hpp>
 
-class BasicGameState {
+class StateManager;
+
+class GameState {
 public:
-    virtual void initialize() = 0;
-    virtual void update() = 0;
+    enum States {
+        MAIN_MENU,
+        GAMEPLAY,
+        NUM_STATES
+    };
+
+    GameState() : manager_(nullptr) {};
+    GameState(int id) : manager_(nullptr), id_(id){};
+
+    virtual void update(sf::Time delta) = 0;
     virtual void render(sf::RenderTarget* target) = 0;
-private:
-};
+
+    virtual void onEnter() = 0;
+    virtual void onExit() = 0;
+
+    virtual void onHidden() = 0;
+    virtual void onRevealed() = 0;
+
+    virtual void keyPressed(int keycode) = 0;
+    virtual void keyReleased(int keycode) = 0;
+
+    virtual bool readyForClose(){ return true; };
+    void setManager(StateManager* manager){ manager_ = manager; };
+
+    void setID(int id){ id_ = id; };
+    int getID() const { return id_;};
+protected:
+    int id_;
+    StateManager* manager_;
+    };
 
 #endif // GAMESTATE_H

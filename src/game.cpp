@@ -1,33 +1,31 @@
-#include "game.h"
-#include "fpsmanager.h"
-#include "mainmenustate.h"
+#include "Game.h"
+#include "FpsManager.h"
+#include "MainMenuState.h"
 
 #include <cstdlib>
 #include <sstream>
 #include <string>
 
 Game::Game(int width, int height, std::string title, float fps) : WIDTH(width),
-	HEIGHT(height), TITLE(title), fpsManager_(fps) {
+	HEIGHT(height), TITLE(title) {
 
 	window_.create(sf::VideoMode(width, height), title);
 
-    if (!debugFont_.loadFromFile("../res/Arial.ttf")){
+        if (!debugFont_.loadFromFile("../res/Arial.ttf")){
         std::cerr << "Error loading debug font." << std::endl;
         exit(1);
     }
-    currentState_ = NULL;
+    showDebug_ = true;
 }
 
 Game::~Game(){}
 
 /*
- * Method gameLoop:
  *  Delegates rendering/updating functionality to the current game state
  *  and updates the fpsManager to correctly manage the time of these updates.
  */
 void Game::gameLoop() {
-    
-    enterState(new MainMenuState());
+
     const int MAX_FRAME_SKIPS = 5;
     const int NUM_DELAYS_PER_YIELD = 5;
 
@@ -35,85 +33,123 @@ void Game::gameLoop() {
     sf::Time oversleepTime = sf::Time::Zero;
     sf::Time sleepTime = sf::Time::Zero;
     sf::Time excess = sf::Time::Zero;
+    sf::Time elapsed = period;
 
     int numDelays = 0;
     int skips = 0;
 
+    stateManager_.clearToState(new MainMenuState());
     sf::Clock clock;
-    clock.restart();
 
-	while(window_.isOpen()){
+	while( window_.isOpen() ){
 		sf::Event event;
-        // User input/events would occur here
+
+        // User input/events
 		while ( window_.pollEvent(event) ){
-			if ( event.type == sf::Event::Closed ||
-                (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)){
-				
-                window_.close();
-			}
+            if ( closeRequested(&event) ){
+                if (stateManager_.currentState()->readyForClose()){
+                    window_.close();
+                }
+	        }
+
+            if ( event.type == sf::Event::KeyPressed ){
+                stateManager_.currentState()->keyPressed(event.key.code);
+            } else if ( event.type == sf::Event::KeyReleased ){
+                stateManager_.currentState()->keyReleased(event.key.code);
+            }
 		}
-        update();
+        // Game updates
+        update(elapsed);
 		render();
+        fpsManager_.tick(elapsed);
 
-        sf::Time elapsed = clock.restart();
-
+        // Check how long it took and sleep accordingly.
+        elapsed = clock.restart();
         sleepTime = (period - elapsed) - oversleepTime;
+
         if (sleepTime > sf::Time::Zero){
             sf::sleep(sleepTime);
+            sf::Time actualSleep = clock.restart();
 
-            oversleepTime = clock.restart() - sleepTime;
+            oversleepTime = actualSleep - sleepTime;
+            elapsed += actualSleep;
 
         } else {
+            // We slept too long last time
             excess += sleepTime;
             oversleepTime = sf::Time::Zero;
+
             if(++numDelays > NUM_DELAYS_PER_YIELD){
-                // Let other threads do shit
-                // This doesn't actually do anything yet
-                // Since the game loop is in the main thread...I think
+                // Let other threads do stuff
+                // This won't actually do anything yet
             }
         }
 
+        // Updates are lagging, update without drawing
         skips = 0;
         while (excess > period && skips < MAX_FRAME_SKIPS){
             skips++;
             excess -= period;
-
-            update();
+            update(period);
         }
-        fpsManager_.tick();
+        fpsManager_.addSkips(skips);
 	}
+    cleanup();
 }
 
-void Game::enterState(BasicGameState* newState){
-    BasicGameState* oldState = currentState_;
-    currentState_ = newState;
+bool Game::closeRequested(sf::Event* event){
+    return event->type == sf::Event::Closed ||
+        (event->type == sf::Event::KeyPressed && 
+            event->key.code == sf::Keyboard::Escape);
+}
 
-    currentState_->initialize();
-    delete oldState;
+
+void Game::cleanup(){
+    stateManager_.clearAll();
+}
+
+void Game::update(sf::Time delta) {
+    stateManager_.clean();
+    stateManager_.currentState()->update(delta);
 }
 
 void Game::render() {
-
 	window_.clear( sf::Color::Black );
-    currentState_->render(&window_);
+    stateManager_.currentState()->render(&window_);
 
-    renderDebug();
+    if (showDebug_){
+        renderStats();
+    }
+
 	window_.display();
 
     return;
 }
 
-void Game::renderDebug(){
+void Game::renderStats(){
     std::ostringstream ss;
-    ss << "FPS: " << fpsManager_.getActualFps();
+    ss << "FPS: " << fpsManager_.getCurrentFps();
 
     sf::Text text(ss.str(), debugFont_);
     text.setCharacterSize(16);
     text.setColor(sf::Color::White);
+    window_.draw(text);
 
+    ss.str("");
+    ss << "UPS: " << fpsManager_.getCurrentUps();
+    text.setString(ss.str());
+    text.setCharacterSize(16);
+    text.setColor(sf::Color::White);
+    text.setPosition(0, 15);
+    window_.draw(text);
+
+    ss.str("");
+    ss << "Avg FPS: " << fpsManager_.getAverageFps();
+    text.setString(ss.str());
+    text.setCharacterSize(16);
+    text.setColor(sf::Color::White);
+    text.setPosition(0, 30);
     window_.draw(text);
 }
 
-void Game::update() {
-    currentState_->update();
-}
+
