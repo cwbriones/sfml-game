@@ -2,8 +2,9 @@
 #define MAIN_MENU_STATE
 
 #include "State.h"
+#include "Menu.h"
 
-#include <SFML/graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 class MainMenuState : public GameState {
     public:
@@ -17,11 +18,10 @@ class MainMenuState : public GameState {
       	void onHidden();
       	void onRevealed();
 
-        void keyPressed(int keycode);
-        void keyReleased(int keycode);
+        void onKeyPressed(int keycode);
+        void onKeyReleased(int keycode);
     private:
-        sf::Font font_;
-        sf::Text text_;
+        Menu menu_;
 };
 
 #endif //MAIN_MENU_STATE

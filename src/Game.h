@@ -1,13 +1,12 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "fpsmanager.h"
+#include "FpsManager.h"
 #include "StateManager.h"
 
 #include <string>
 
 #include <SFML/Graphics.hpp>
-#include <boost/smart_ptr.hpp>
 
 class Game {
 public:

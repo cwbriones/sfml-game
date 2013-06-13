@@ -3,7 +3,7 @@
 
 #include "State.h"
 
-#include <SFML/graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 class GameplayState : public GameState {
     public:
@@ -17,13 +17,10 @@ class GameplayState : public GameState {
       	void onHidden();
       	void onRevealed();
 
-        void keyPressed(int keycode);
-        void keyReleased(int keycode);
-        
+        void onKeyPressed(int keycode);
+        void onKeyReleased(int keycode);
+
         bool readyForClose();
-    private:
-        sf::Font font_;
-        sf::Text text_;
 };
 
 #endif //GAMEPLAY_STATE

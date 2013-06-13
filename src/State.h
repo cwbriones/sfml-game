@@ -25,8 +25,8 @@ public:
     virtual void onHidden() = 0;
     virtual void onRevealed() = 0;
 
-    virtual void keyPressed(int keycode) = 0;
-    virtual void keyReleased(int keycode) = 0;
+    virtual void onKeyPressed(int keycode) = 0;
+    virtual void onKeyReleased(int keycode) = 0;
 
     virtual bool readyForClose(){ return true; };
     void setManager(StateManager* manager){ manager_ = manager; };

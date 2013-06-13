@@ -2,6 +2,7 @@
 #include "FpsManager.h"
 #include "MainMenuState.h"
 
+#include <iostream>
 #include <cstdlib>
 #include <sstream>
 #include <string>
@@ -9,13 +10,13 @@
 Game::Game(int width, int height, std::string title, float fps) : WIDTH(width),
 	HEIGHT(height), TITLE(title) {
 
-	window_.create(sf::VideoMode(width, height), title);
+	window_.create(sf::VideoMode(width, height), title, !sf::Style::Resize | sf::Style::Close );
 
         if (!debugFont_.loadFromFile("../res/Arial.ttf")){
         std::cerr << "Error loading debug font." << std::endl;
         exit(1);
     }
-    showDebug_ = true;
+    showDebug_ = false;
 }
 
 Game::~Game(){}
@@ -46,21 +47,24 @@ void Game::gameLoop() {
 
         // User input/events
 		while ( window_.pollEvent(event) ){
+
             if ( closeRequested(&event) ){
                 if (stateManager_.currentState()->readyForClose()){
                     window_.close();
                 }
 	        }
-
             if ( event.type == sf::Event::KeyPressed ){
-                stateManager_.currentState()->keyPressed(event.key.code);
-            } else if ( event.type == sf::Event::KeyReleased ){
-                stateManager_.currentState()->keyReleased(event.key.code);
+                stateManager_.currentState()->onKeyPressed(event.key.code);
             }
+            else if ( event.type == sf::Event::KeyReleased ){
+                stateManager_.currentState()->onKeyReleased(event.key.code);
+            }
+
 		}
         // Game updates
         update(elapsed);
 		render();
+
         fpsManager_.tick(elapsed);
 
         // Check how long it took and sleep accordingly.
