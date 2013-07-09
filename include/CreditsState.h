@@ -1,7 +1,7 @@
 #ifndef CREDITS_STATE
 #define CREDITS_STATE
 
-#include "State.h"
+#include "GameState.h"
 #include "Menu.h"
 
 #include <SFML/Graphics.hpp>

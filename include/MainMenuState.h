@@ -1,7 +1,7 @@
 #ifndef MAIN_MENU_STATE
 #define MAIN_MENU_STATE
 
-#include "State.h"
+#include "GameState.h"
 #include "Menu.h"
 
 #include <SFML/Graphics.hpp>

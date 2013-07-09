@@ -1,0 +1,8 @@
+Add button actions, maybe through the use of function pointers.
+That is, if a button is activated the activate the attached function.
+
+Button::bind(auto func){
+    this->onActivation = func;
+}
+
+where onActivation is a function pointer

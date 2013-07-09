@@ -6,17 +6,32 @@
  */
 StateManager::StateManager() {
 	currentState_ = nullptr;
+    showUpdates_ = false;
+    bool closeRequested_ = false;
+}
+
+void StateManager::notify(std::string event, std::string message){
+    if (! showUpdates_){
+        return;
+    }
+
+    std::cout << "StateManager: " << event 
+        << ":" << message << std::endl;
 }
 
 void StateManager::popState(){
     GameState* oldState = stateStack_.back();
     oldState->onExit();
+
+    notify("Exiting", currentState_->getName());
+
     oldStates_.push_back(oldState);
     stateStack_.pop_back();
 
     if (stateStack_.size() > 0){
         stateStack_.back()->onRevealed();
         currentState_ = stateStack_.back();
+        notify("Revealing", currentState_->getName());
     } else {
         currentState_ = nullptr;
     }
@@ -26,12 +41,14 @@ void StateManager::pushState(GameState* newState){
     newState->setManager(this);
     if (stateStack_.size() > 0){
         stateStack_.back()->onHidden();
+        notify("Hiding", currentState_->getName());
     }
 
     stateStack_.push_back(newState);
     stateStack_.back()->onEnter();
 
     currentState_ = stateStack_.back();
+    notify("Entering", currentState_->getName());
 }
 
 void StateManager::clearToState(GameState* newState){
@@ -39,10 +56,11 @@ void StateManager::clearToState(GameState* newState){
     if (!stateStack_.empty()){
         clearStack();
     }
-    
+    notify("State Clear", "Successful"); 
     stateStack_.push_back(newState);
     currentState_ = stateStack_.back();
     currentState_->onEnter();
+    notify("Entering", currentState_->getName());
 }
 
 void StateManager::clearStack(){
@@ -69,4 +87,15 @@ void StateManager::clearAll(){
     clearStack();
     clean();
     currentState_ = nullptr;
+}
+
+void StateManager::requestClose(){
+    closeRequested_ = true;
+}
+
+bool StateManager::closeRequested(){
+    if (closeRequested_){
+        closeRequested_ = false;
+        return true;
+    }
 }

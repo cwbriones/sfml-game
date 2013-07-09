@@ -14,6 +14,7 @@ Button::Button(std::string label, float x, float y, float width, float height){
 
 void Button::activate(){
     active_ = true;
+    onPress_();
 }
 
 bool Button::isActive(){
@@ -49,6 +50,10 @@ std::string Button::getLabel(){
 void Button::setDimensions(float x, float y){
     bounds_.x = x;
     bounds_.y = y;
+}
+
+void Button::setAction(std::function<void(void)> action){
+    onPress_ = action;
 }
 
 sf::Vector2f Button::getDimensions(){

@@ -1,7 +1,7 @@
 #ifndef STATEMANAGER_H
 #define STATEMANAGER_H
 
-#include "State.h"
+#include "GameState.h"
 
 #include <string>
 #include <list>

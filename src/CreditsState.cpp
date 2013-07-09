@@ -4,7 +4,6 @@
 #include <iostream>
 
 CreditsState::CreditsState(){
-    id_ = GameState::CREDITS;
     name_ = "Credits"; 
     
     char* fontPath = "../res/Arial.ttf";

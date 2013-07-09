@@ -40,6 +40,7 @@ void Game::gameLoop() {
     int skips = 0;
 
     stateManager_.clearToState(new MainMenuState());
+    stateManager_.toggleUpdates();
     sf::Clock clock;
 
 	while( window_.isOpen() ){
@@ -48,7 +49,7 @@ void Game::gameLoop() {
         // User input/events
 		while ( window_.pollEvent(event) ){
 
-            if ( closeRequested(&event) ){
+            if ( closeRequested(&event) || stateManager_.closeRequested() ){
                 if (stateManager_.currentState()->readyForClose()){
                     window_.close();
                 }

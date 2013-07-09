@@ -1,7 +1,7 @@
 #ifndef GAMEPLAY_STATE
 #define GAMEPLAY_STATE
 
-#include "State.h"
+#include "GameState.h"
 
 #include <SFML/Graphics.hpp>
 

@@ -40,11 +40,17 @@ void Menu::update(sf::Vector2i mousePosition, bool buttonDown){
 }
 
 void Menu::addItem(std::string item_){
+    addItem(item_, [](){} );
+}
+void Menu::addItem(std::string item_, std::function<void()> onPress){
+
     sf::Vector2f position = getPosition();
     position.y += buttons_.size() * fontSize_;
 
     Button* button = new Button(item_, position.x, position.y, \
             item_.size() * fontSize_, fontSize_ );
+    button->setAction(onPress);
+
     buttons_.push_back(button);
     selection_ = buttons_.begin();
 }

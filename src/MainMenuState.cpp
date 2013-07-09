@@ -1,5 +1,6 @@
 #include "MainMenuState.h"
 #include "GameplayState.h"
+#include "CreditsState.h"
 #include "StateManager.h"
 
 #include <SFML/Window/Keyboard.hpp>
@@ -8,27 +9,17 @@
 #include <cstdlib>
 
 MainMenuState::MainMenuState() : menu_("../res/Arial.ttf") { 
-    id_ = GameState::MAIN_MENU;
+    name_ = "Main Menu";
 }
 
 void MainMenuState::onEnter(){
-    std::cout << "Entering: Menu" << std::endl;
-
     menu_.setPosition(10, 10);
     menu_.setFontSize(20);
-    menu_.addItem("Start Game");
+    menu_.addItem("Start Game", [&](){ this->manager_->clearToState(new GameplayState()); });
     menu_.addItem("Options");
-    menu_.addItem("Credits");
-    menu_.addItem("Exit");
+    menu_.addItem("Credits", [&](){ this->manager_->pushState(new CreditsState()); });
+    menu_.addItem("Exit", [&](){ this->manager_->requestClose(); });
 }
-
-void MainMenuState::onExit(){
-    std::cout << "Exiting: Menu" << std::endl;
-}
-
-void MainMenuState::onHidden(){}
-
-void MainMenuState::onRevealed(){}
 
 void MainMenuState::onKeyPressed(int keycode){
     if (keycode == sf::Keyboard::Up){

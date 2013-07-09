@@ -1,4 +1,4 @@
-#include "State.h"
+#include "GameState.h"
 #include "StateManager.h"
 #include "GameplayState.h"
 #include "MainMenuState.h"
@@ -7,20 +7,17 @@
 #include <iostream>
 
 GameplayState::GameplayState(){
-    id_ = GameState::GAMEPLAY;
+    name_ = "Gameplay";
+    
+    char* fontPath = "../res/Arial.ttf";
+    if(!font_.loadFromFile(fontPath)){
+        std::cerr << "Error loading menu font from " << fontPath << std::endl;
+    }
+    text_.setFont(font_);
+    text_.setCharacterSize(12);
+    text_.setString("This is where your gameplay would occur.");
+
 }
-
-void GameplayState::onEnter(){
-    std::cout << "Entering: Gameplay" << std::endl;
-}
-
-void GameplayState::onExit(){
-    std::cout << "Exiting: Gameplay" << std::endl;
-}
-
-void GameplayState::onHidden(){}
-
-void GameplayState::onRevealed(){}
 
 void GameplayState::update(sf::Time delta){}
 
@@ -35,8 +32,5 @@ void GameplayState::onKeyReleased(int keycode){
 }
 
 void GameplayState::render(sf::RenderTarget* target){
-}
-
-bool GameplayState::readyForClose(){
-    return false;
+    target->draw(text_);
 }
