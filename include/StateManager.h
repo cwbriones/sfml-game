@@ -20,7 +20,7 @@ public:
 
     void requestClose();
     bool closeRequested();
-    void toggleUpdates(){ showUpdates_ = !showUpdates_; };
+    void toggleUpdates();
 
     void notify(std::string event, std::string message);
 private:

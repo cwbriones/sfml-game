@@ -3,6 +3,8 @@
 
 #include <cmath>
 
+const float PI = 3.1415926535;
+
 float fast_inv_sqrt(float num){
     long i;
     float x2, y;
@@ -25,8 +27,8 @@ public:
     T y;
 
     void Vector2(){
-        this->x = 0;
-        this->y = 0;
+        x = 0;
+        y = 0;
     }
 
     void Vector2(T x, T y){
@@ -49,11 +51,6 @@ public:
         y *= scalar;
     };
 
-    Vector2* copy(){
-        Vector2* copy = new Vector2(this->x, this->y);
-        return copy;
-    }
-
     T magnitudeSquare(){
         return x * x + y * y;
     };
@@ -70,9 +67,37 @@ public:
         return T.x * x + T.y * y;
     };
 
-    bool isOrthogonal(Vector<t> other){
+    float angle(){
+        return atan2(y, x) + PI;
+    }
+
+    void rotate(float angle){
+        T rotx =  cos(angle) * x + sin(angle) * y;
+        T roty = -sin(angle) * x + cos(angle) * y;
+
+        x = rotx;
+        y = roty;
+    }
+
+    Vector2 perp(){
+        return Vector2(-this.y, this.x);
+    }
+
+    bool orthogonalTo(Vector2 other){
         return dot(other) == 0;
     };
+
+    Vector2 unit(){
+        Vector2 norm = *this;
+        norm.normalize();
+        return norm;
+    }
+
+    void normalize(){
+        T mag = magnitude();
+        x /= mag;
+        y /= mag;
+    }
 }
 
 typedef Vector2<float> Vector2f;

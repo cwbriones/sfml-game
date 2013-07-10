@@ -7,7 +7,7 @@
 StateManager::StateManager() {
 	currentState_ = nullptr;
     showUpdates_ = false;
-    bool closeRequested_ = false;
+    closeRequested_ = false;
 }
 
 void StateManager::notify(std::string event, std::string message){
@@ -15,8 +15,12 @@ void StateManager::notify(std::string event, std::string message){
         return;
     }
 
-    std::cout << "StateManager: " << event 
-        << ":" << message << std::endl;
+    std::cout << "[StateManager] " << event 
+        << ": " << message << std::endl;
+}
+
+void StateManager::toggleUpdates(){
+    showUpdates_ = !showUpdates_;
 }
 
 void StateManager::popState(){
@@ -29,8 +33,8 @@ void StateManager::popState(){
     stateStack_.pop_back();
 
     if (stateStack_.size() > 0){
-        stateStack_.back()->onRevealed();
         currentState_ = stateStack_.back();
+        currentState_->onRevealed();
         notify("Revealing", currentState_->getName());
     } else {
         currentState_ = nullptr;
@@ -54,7 +58,7 @@ void StateManager::pushState(GameState* newState){
 void StateManager::clearToState(GameState* newState){
     newState->setManager(this);
     if (!stateStack_.empty()){
-        clearStack();
+        clearAll();
     }
     notify("State Clear", "Successful"); 
     stateStack_.push_back(newState);
@@ -77,7 +81,7 @@ GameState* StateManager::currentState(){
 }
 
 void StateManager::clean(){
-    while (oldStates_.size() > 0){
+    while (!oldStates_.empty()){
         delete oldStates_.back();
         oldStates_.pop_back();
     }

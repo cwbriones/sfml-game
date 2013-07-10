@@ -16,7 +16,7 @@ Menu::Menu(std::string fontPath){
 }
 
 Menu::~Menu(){
-    while (buttons_.size() > 0){
+    while (!buttons_.empty()){
         delete buttons_.back();
         buttons_.pop_back();
     }
@@ -42,6 +42,7 @@ void Menu::update(sf::Vector2i mousePosition, bool buttonDown){
 void Menu::addItem(std::string item_){
     addItem(item_, [](){} );
 }
+
 void Menu::addItem(std::string item_, std::function<void()> onPress){
 
     sf::Vector2f position = getPosition();
