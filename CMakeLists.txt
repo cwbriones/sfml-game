@@ -30,6 +30,7 @@ add_executable(${EXECUTABLE_NAME}
 )
 
 #Set compiler flags
+SET(CMAKE_CXX_COMPILER "g++-4.8.1")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 # Detect and add SFML
