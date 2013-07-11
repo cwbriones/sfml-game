@@ -1,13 +1,13 @@
-#ifndef VECTOR_H
-#define VECTOR_H
+#ifndef DEMO_VECTOR2_H
+#define DEMO_VECTOR2_H
 
 #include <cmath>
 
-namespace ast {
+namespace demo {
 
     const float PI = 3.1415926535;
 
-    float fast_inv_sqrt(float num){
+    float fdemo_inv_sqrt(float num){
         long i;
         float x2, y;
         const float threeHalfs = 1.5f;
@@ -62,7 +62,7 @@ namespace ast {
         };
 
         T approxMagnitude(){
-            return fast_inv_sqrt(x * x + y * y);
+            return fdemo_inv_sqrt(x * x + y * y);
         }
 
         T dot(Vector2 other){
@@ -121,6 +121,6 @@ namespace ast {
         lhs.subtract(rhs);
         return lhs;
     }
-}
+} // namespace demo
 
-#endif VECTOR_H
+#endif DEMO_VECTOR_H

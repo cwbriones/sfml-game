@@ -1,17 +1,17 @@
 #ifndef ENTITY_FACTORY
 #define ENTITY_FACTORY
 
-namespace ast {
+namespace demo {
 
 class EntityFactory
 {
     public:
         EntityFactory();
-        Entity* createAsteroid();
+        Entity* createdemoeroid();
         Entity* createPlayer();
         Entity* createUFO();
 };
 
-} // namespace ast
+} // namespace demo
 
 #endif // ENTITY_FACTORY

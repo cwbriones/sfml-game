@@ -1,10 +1,10 @@
-#ifndef ENTITY_H
-#define ENTITY_H 
+#ifndef DEMO_ENTITY_H
+#define DEMO_ENTITY_H 
 
-#include "Vector.h"
+#include "Vector2.h"
 #include <string>
 
-namespace ast {
+namespace demo {
 
 class Entity
 {
@@ -24,7 +24,7 @@ private:
     std::string id_;
 }; // class Entity
 
-} // namespace ast
+} // namespace demo
 
 
 #endif // ENTITY_H
