@@ -16,10 +16,6 @@ void demo::Entity::setAlive(bool alive){
     alive_ = alive;
 }
 
-void demo::Entity::move(){
-    position_.add(velocity_);
-}
-
 bool demo::Entity::isAlive(){
     return alive_;
 }

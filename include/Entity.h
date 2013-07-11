@@ -2,6 +2,11 @@
 #define DEMO_ENTITY_H 
 
 #include "Vector2.h"
+#include "Component/GraphicsComponent.h"
+#include "Component/PhysicsComponent.h"
+#include "Component/InputComponent.h"
+
+#include <SFML/Graphics/RenderTarget.hpp>
 #include <string>
 
 namespace demo {
@@ -10,15 +15,22 @@ class Entity
 {
 public:
     Entity();
-    Entity(std::string id, float x, float y, float vx, float vy);
-    void setAlive(bool alive);
-    void move();
-    bool isAlive();
+    Entity(std::string id, 
+            float x, float y, 
+            float vx, float vy);
 
+    bool isAlive();
+    void setAlive(bool alive);
     std::string getID();
+
+    void update(int delta, sf::RenderTarget& target)
 private:
-    Vector2d position_;
-    Vector2d velocity_;
+    Vector2f position_;
+    Vector2f velocity_;
+
+    InputComponent* input_;
+    PhysicsComponent* physics_;
+    GraphicsComponent* graphics_;
 
     bool alive_;
     std::string id_;
