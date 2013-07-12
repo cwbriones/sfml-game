@@ -1,4 +1,5 @@
 -std=c++11
+-stdlib=libc++
 -I/usr/local/include/SFML/
 -I.
 -I./include

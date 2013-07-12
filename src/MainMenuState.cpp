@@ -15,6 +15,7 @@ MainMenuState::MainMenuState() : menu_("../res/Arial.ttf") {
 void MainMenuState::onEnter(){
     menu_.setPosition(10, 10);
     menu_.setFontSize(20);
+
     menu_.addItem("Start Game", [&](){ this->manager_->clearToState(new GameplayState()); });
     menu_.addItem("Options");
     menu_.addItem("Credits", [&](){ this->manager_->pushState(new CreditsState()); });

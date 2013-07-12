@@ -8,8 +8,7 @@ namespace demo {
 class GraphicsComponent
 {
 public:
-    virtual void update(Entity& entity, sf::RenderTarget& target) = 0;
-private:
+    virtual void update(Entity& owner, sf::RenderTarget& target, int delta) = 0;
 }; // GraphicsComponent
 
 } // namespace demo
