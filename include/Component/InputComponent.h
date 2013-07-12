@@ -6,9 +6,8 @@ namespace demo {
 class InputComponent
 {
 public:
-    InputComponent();
     virtual void update(Entity& entity) = 0;
-};
+}; // InputComponent
 
 } // namespace demo
 

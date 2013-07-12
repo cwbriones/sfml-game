@@ -6,10 +6,8 @@ namespace demo {
 class PhysicsComponent
 {
 public:
-    PhysicsComponent();
     virtual void update(int delta) = 0;
-    /* data */
-};
+}; // PhysicsComponent
 
 } // namespace demo
 
