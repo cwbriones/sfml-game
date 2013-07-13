@@ -3,10 +3,12 @@
 
 namespace demo {
 
+class Entity;
+
 class EntityFactory
 {
     public:
-        Entity* createPlayer(int x, int y);
+        Entity* createPlayer(int x, int y, int vx, int vy);
 };
 
 } // namespace demo

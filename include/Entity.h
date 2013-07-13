@@ -27,7 +27,8 @@ public:
     void setAlive(bool alive);
     std::string getID();
 
-    void update(int delta, sf::RenderTarget& target)
+    void update(int delta);
+    void render(sf::RenderTarget& target);
 
     void addInput(InputComponent* input);
     void addPhysics(PhysicsComponent* physics);

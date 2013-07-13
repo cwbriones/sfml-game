@@ -27,6 +27,9 @@ add_executable(${EXECUTABLE_NAME}
                 src/CreditsState.cpp
                 src/Button.cpp
                 src/Menu.cpp
+                src/ShipGraphicsComponent.cpp
+                src/Entity.cpp
+                src/EntityFactory.cpp
 )
 
 #Set compiler flags

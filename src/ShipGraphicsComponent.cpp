@@ -5,11 +5,15 @@
 
 namespace demo {
 
-void ShipGraphicsComponent::ShipGraphicsComponent() : shape(40, 3) {
+ShipGraphicsComponent::ShipGraphicsComponent() : shape_(40, 3) {
 }
 
-void ShipGraphicsComponent::update(Entity& entity, sf::RenderTarget& target){
-    target.draw(shape);
+void ShipGraphicsComponent::update(Entity& entity, int delta){
+
+}
+
+void ShipGraphicsComponent::render(sf::RenderTarget& target){
+    target.draw(shape_);
 }
 
 } // namespace demo

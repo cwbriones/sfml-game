@@ -2,13 +2,13 @@
 #define DEMO_VECTOR2_H
 
 #include <cmath>
-#include <SFML/System/Vector2.h>
+#include <SFML/System/Vector2.hpp>
 
 namespace demo {
 
     const float PI = 3.1415926535;
 
-    float fdemo_inv_sqrt(float num){
+    static float fast_inv_sqrt(float num){
         long i;
         float x2, y;
         const float threeHalfs = 1.5f;
@@ -29,12 +29,12 @@ namespace demo {
         T x;
         T y;
 
-        void Vector2(){
+        Vector2(){
             x = 0;
             y = 0;
         }
 
-        void Vector2(T x, T y){
+        Vector2(T x, T y){
             this->x = x;
             this->y = y;
         }
@@ -102,13 +102,17 @@ namespace demo {
             y /= mag;
         }
 
-        sf::Vector2<T> toSfVector(){
-            return sf::Vector2<T>(x, y);
+        template <typename NewType >
+        operator sf::Vector2< NewType >(){
+            NewType nx = static_cast< NewType >(this->x); 
+            NewType ny = static_cast< NewType >(this->y);
+
+            sf::Vector2<NewType>(nx, ny);
         }
 
         friend Vector2& operator+=(Vector2& lhs, Vector2& rhs);
         friend Vector2& operator-=(Vector2& lhs, Vector2& rhs);
-    }
+    };
 
     typedef Vector2<int>            Vector2i;
     typedef Vector2<float>          Vector2f;
@@ -128,4 +132,4 @@ namespace demo {
     }
 } // namespace demo
 
-#endif DEMO_VECTOR_H
+#endif // DEMO_VECTOR2_H

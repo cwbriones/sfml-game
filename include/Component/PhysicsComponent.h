@@ -3,10 +3,12 @@
 
 namespace demo {
 
+class Entity;
+    
 class PhysicsComponent
 {
 public:
-    virtual void update(int delta) = 0;
+    virtual void update(Entity& owner, int delta) = 0;
 }; // PhysicsComponent
 
 } // namespace demo

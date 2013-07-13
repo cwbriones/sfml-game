@@ -3,10 +3,12 @@
 
 namespace demo {
 
+class Entity;
+
 class InputComponent
 {
 public:
-    virtual void update(Entity& entity) = 0;
+    virtual void update(Entity& owner, int delta) = 0;
 }; // InputComponent
 
 } // namespace demo
