@@ -9,7 +9,7 @@
 GameplayState::GameplayState(){
     name_ = "Gameplay";
     
-    char* fontPath = "../res/Arial.ttf";
+    const char* fontPath = "../res/Arial.ttf";
     if(!font_.loadFromFile(fontPath)){
         std::cerr << "Error loading menu font from " << fontPath << std::endl;
     }
@@ -19,7 +19,9 @@ GameplayState::GameplayState(){
 
 }
 
-void GameplayState::update(sf::Time delta){}
+void GameplayState::update(sf::Time delta){
+
+}
 
 void GameplayState::onKeyPressed(int keycode){
 

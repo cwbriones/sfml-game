@@ -6,7 +6,7 @@
 CreditsState::CreditsState(){
     name_ = "Credits"; 
     
-    char* fontPath = "../res/Arial.ttf";
+    const char* fontPath = "../res/Arial.ttf";
     if(!font_.loadFromFile(fontPath)){
         std::cerr << "Error loading menu font from " << fontPath << std::endl;
     }
