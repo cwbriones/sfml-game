@@ -30,7 +30,12 @@ add_executable(${EXECUTABLE_NAME}
 )
 
 #Set compiler flags
-SET(CMAKE_CXX_COMPILER "g++-4.8.1")
+if(APPLE)
+    SET(CMAKE_CXX_COMPILER "g++-4.8.1")
+elseif(UNIX)
+    SET(CMAKE_CXX_COMPILER "g++")
+endif()
+
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 # Detect and add SFML

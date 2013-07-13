@@ -6,10 +6,7 @@ namespace demo {
 class EntityFactory
 {
     public:
-        EntityFactory();
-        Entity* createdemoeroid();
-        Entity* createPlayer();
-        Entity* createUFO();
+        Entity* createPlayer(int x, int y);
 };
 
 } // namespace demo

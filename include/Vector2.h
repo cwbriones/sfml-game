@@ -2,6 +2,7 @@
 #define DEMO_VECTOR2_H
 
 #include <cmath>
+#include <SFML/System/Vector2.h>
 
 namespace demo {
 
@@ -99,6 +100,10 @@ namespace demo {
             T mag = magnitude();
             x /= mag;
             y /= mag;
+        }
+
+        sf::Vector2<T> toSfVector(){
+            return sf::Vector2<T>(x, y);
         }
 
         friend Vector2& operator+=(Vector2& lhs, Vector2& rhs);
