@@ -16,7 +16,8 @@ class ShipGraphicsComponent : public GraphicsComponent
 public:
     ShipGraphicsComponent();
 private:
-    sf::CircleShape shape_;
+    sf::VertexArray vertices_;
+
     virtual void update(Entity& entity, int delta);
     virtual void render(sf::RenderTarget& target);
 };
