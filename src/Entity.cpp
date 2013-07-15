@@ -3,23 +3,25 @@
 
 namespace demo {
 
-Entity::Entity() : position_(0, 0), velocity_(0, 0), id_("null") {
-
-    alive_ = true;
+Entity::Entity() : velocity_(0, 0), alive_(true), id_("null") {
 
     input_ = nullptr;
     graphics_ = nullptr;
     physics_ = nullptr;
+
+    setPosition(0, 0);
 }
 
 Entity::Entity(std::string id, float x, float y, float vx, float vy) :
-        position_(x, y),
         velocity_(vx, vy),
         alive_(true),
         id_(id) {
+
     input_ = nullptr;
     graphics_ = nullptr;
     physics_ = nullptr;
+
+    setPosition(x, y);
 }
 
 Entity::~Entity(){
@@ -48,7 +50,7 @@ void Entity::update(int delta){
 
 void Entity::render(sf::RenderTarget& target){
     if (graphics_) {
-        graphics_->render(target);
+        graphics_->render(*this, target);
     }
 }
 

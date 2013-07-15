@@ -11,10 +11,8 @@ class Entity;
 class GraphicsComponent
 {
 public:
-    virtual void update(Entity& owner, int delta) = 0;
-    virtual void render(sf::RenderTarget& target) = 0;
-protected:
-    sf::Transform transform;
+    virtual void update(Entity& entity, int delta) = 0;
+    virtual void render(Entity& entity, sf::RenderTarget& target) = 0;
 }; // GraphicsComponent
 
 } // namespace demo

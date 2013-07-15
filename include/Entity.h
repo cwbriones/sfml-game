@@ -6,6 +6,7 @@
 #include "Component/PhysicsComponent.h"
 #include "Component/InputComponent.h"
 
+#include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <string>
 
@@ -13,7 +14,7 @@
 
 namespace demo {
 
-class Entity
+class Entity : public sf::Transformable
 {
 public:
     Entity();
@@ -34,8 +35,7 @@ public:
     void addPhysics(PhysicsComponent* physics);
     void addGraphics(GraphicsComponent* graphics);
 private:
-    Vector2f position_;
-    Vector2f velocity_;
+    sf::Vector2f velocity_;
 
     InputComponent* input_;
     PhysicsComponent* physics_;

@@ -4,7 +4,7 @@
 #include "Component/GraphicsComponent.h"
 #include "Component/ShipGraphicsComponent.h"
 
-#include <SFML/Graphics/CircleShape.hpp>
+#include <SFML/Graphics/VertexArray.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
 namespace demo {
@@ -15,11 +15,14 @@ class ShipGraphicsComponent : public GraphicsComponent
 {
 public:
     ShipGraphicsComponent();
+
+    sf::Vector2f getCenter();
 private:
     sf::VertexArray vertices_;
-
+    const sf::Vector2f center_;
+protected:
     virtual void update(Entity& entity, int delta);
-    virtual void render(sf::RenderTarget& target);
+    virtual void render(Entity& entity, sf::RenderTarget& target);
 };
 
 } // namespace demo
