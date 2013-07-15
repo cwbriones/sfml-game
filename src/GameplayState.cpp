@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include <iostream>
 
-GameplayState::GameplayState(){
+GameplayState::GameplayState() {
     name_ = "Gameplay";
     
     const char* fontPath = "../res/Arial.ttf";
@@ -16,8 +16,6 @@ GameplayState::GameplayState(){
     text_.setFont(font_);
     text_.setCharacterSize(12);
     text_.setString("This is where your gameplay would occur.");
-    
-    entities_.push_back(factory_.createPlayer(100, 100, 0, 0));
 }
 
 GameplayState::~GameplayState(){
@@ -25,6 +23,11 @@ GameplayState::~GameplayState(){
         delete entities_.back();
         entities_.pop_back();
     }
+}
+
+void GameplayState::createEntities(){
+    factory_.assignInputSystem(manager_->getInputSystem());
+    entities_.push_back(factory_.createPlayer(100, 100, 0, 0));
 }
 
 void GameplayState::update(sf::Time delta){

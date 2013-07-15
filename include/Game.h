@@ -6,6 +6,7 @@
 
 #include <string>
 
+#include "InputSystem.h"
 #include <SFML/Graphics.hpp>
 
 class Game {
@@ -27,6 +28,8 @@ public:
 private:
 	sf::RenderWindow window_;
     sf::Font debugFont_;
+
+    demo::InputSystem inputSystem_;
     
 	FpsManager fpsManager_;
 	StateManager stateManager_;

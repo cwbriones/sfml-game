@@ -33,7 +33,9 @@ public:
     virtual void onKeyReleased(int keycode) = 0;
 
     virtual bool readyForClose(){ return false; }
-    void setManager(StateManager* manager){ manager_ = manager; };
+    void setManager(StateManager* manager){ 
+        manager_ = manager;
+    };
 
     std::string getName(){ return name_; };
 protected:

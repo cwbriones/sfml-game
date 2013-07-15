@@ -30,6 +30,7 @@ add_executable(${EXECUTABLE_NAME}
                 src/ShipGraphicsComponent.cpp
                 src/Entity.cpp
                 src/EntityFactory.cpp
+                src/InputSystem.cpp
 )
 
 #Set compiler flags

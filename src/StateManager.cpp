@@ -103,3 +103,13 @@ bool StateManager::closeRequested(){
         return true;
     }
 }
+
+void StateManager::assignInputSystem(demo::InputSystem* system){
+    if (!inputSystem_){
+        inputSystem_ = system;
+    }
+}
+
+demo::InputSystem* StateManager::getInputSystem(){
+    return inputSystem_;
+}

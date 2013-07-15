@@ -13,11 +13,16 @@ class GameplayState : public GameState {
     public:
         GameplayState();
         ~GameplayState();
-        void update(sf::Time delta);
-        void render(sf::RenderTarget* target);
+
+        // Implementation : GameState
+
+        virtual void update(sf::Time delta) override;
+        virtual void render(sf::RenderTarget* target) override;
         
-        void onKeyPressed(int keycode);
-        void onKeyReleased(int keycode);
+        virtual void onKeyPressed(int keycode) override;
+        virtual void onKeyReleased(int keycode) override;
+
+        void createEntities(); 
     private:
         sf::Font font_;
         sf::Text text_;

@@ -4,11 +4,17 @@
 namespace demo {
 
 class Entity;
+class InputSystem;
 
 class InputComponent
 {
 public:
     virtual void update(Entity& owner, int delta) = 0;
+    void setInputSystem(InputSystem* system){
+        system_ = system;
+    }
+protected:
+    InputSystem* system_ = nullptr;
 }; // InputComponent
 
 } // namespace demo

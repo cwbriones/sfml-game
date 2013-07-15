@@ -1,6 +1,7 @@
 #ifndef STATEMANAGER_H
 #define STATEMANAGER_H
 
+#include "InputSystem.h"
 #include "GameState.h"
 
 #include <string>
@@ -8,7 +9,7 @@
 
 class StateManager {
 public:
-	StateManager();
+    StateManager();
 
     GameState* currentState();
     void clean();
@@ -23,6 +24,9 @@ public:
     void toggleUpdates();
 
     void notify(std::string event, std::string message);
+
+    void assignInputSystem(demo::InputSystem* system);
+    demo::InputSystem* getInputSystem();
 private:
     GameState* currentState_;
 	std::list<GameState*> stateStack_;
@@ -31,6 +35,8 @@ private:
     std::list<GameState*> oldStates_;
     bool closeRequested_;
     bool showUpdates_;
+
+    demo::InputSystem* inputSystem_ = nullptr;
 };
 
 #endif //STATEMANAGER_H
