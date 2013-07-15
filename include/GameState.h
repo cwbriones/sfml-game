@@ -16,9 +16,10 @@ public:
         NUM_STATES
     };
 
-    GameState() : manager_(nullptr), name_("") {};
-    GameState(std::string name) : 
-        manager_(nullptr), name_(name){};
+    GameState(){};
+    GameState(StateManager* manager) : manager_(manager) {};
+    GameState(std::string name, StateManager* manager) : 
+        name_(name), manager_(manager) {};
 
     virtual void update(sf::Time delta) = 0;
     virtual void render(sf::RenderTarget* target) = 0;
@@ -33,14 +34,16 @@ public:
     virtual void onKeyReleased(int keycode) = 0;
 
     virtual bool readyForClose(){ return false; }
+
     void setManager(StateManager* manager){ 
-        manager_ = manager;
+        if (!manager_)
+            manager_ = manager;
     };
 
     std::string getName(){ return name_; };
 protected:
-    std::string name_;
-    StateManager* manager_;
-    };
+    std::string name_ = "";
+    StateManager* manager_ = nullptr;
+};
 
 #endif // GAMESTATE_H

@@ -9,6 +9,7 @@
 class MainMenuState : public GameState {
     public:
         MainMenuState();
+
         void update(sf::Time delta);
         void render(sf::RenderTarget* target);
         

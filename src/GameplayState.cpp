@@ -26,7 +26,6 @@ GameplayState::~GameplayState(){
 }
 
 void GameplayState::createEntities(){
-    factory_.assignInputSystem(manager_->getInputSystem());
     entities_.push_back(factory_.createPlayer(100, 100, 0, 0));
 }
 
@@ -52,4 +51,9 @@ void GameplayState::render(sf::RenderTarget* target){
     for ( auto entity : entities_ ){
         entity->render(*target); // TODO: Fix this. IE make render accept a RenderTarget reference everywhere
     }
+}
+
+void GameplayState::onEnter(){
+    factory_.assignInputSystem(manager_->getInputSystem());
+    createEntities();
 }
