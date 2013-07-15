@@ -104,12 +104,6 @@ bool StateManager::closeRequested(){
     }
 }
 
-void StateManager::assignInputSystem(demo::InputSystem* system){
-    if (!inputSystem_){
-        inputSystem_ = system;
-    }
-}
-
-demo::InputSystem* StateManager::getInputSystem(){
-    return inputSystem_;
+const demo::InputSystem* const StateManager::getInputSystem(){
+    return &inputSystem_;
 }

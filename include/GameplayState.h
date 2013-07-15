@@ -23,7 +23,6 @@ class GameplayState : public GameState {
         virtual void onKeyReleased(int keycode) override;
 
         virtual void onEnter() override;
-
         void createEntities(); 
     private:
         sf::Font font_;

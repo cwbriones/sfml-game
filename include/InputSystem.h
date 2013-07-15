@@ -13,8 +13,8 @@ class InputSystem
 public:
     InputSystem();
     ~InputSystem();
-    virtual void delegateEvent(sf::Event& ev);
-    void registerComponent(InputComponent* component);
+    virtual void delegateInputEvent(sf::Event& ev);
+    void registerSink(InputComponent* component);
 private:
     void delegateKeyboardEvent(sf::Event& ev);
     void delegateJoystickEvent(sf::Event& ev);

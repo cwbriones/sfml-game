@@ -28,8 +28,6 @@ public:
 private:
 	sf::RenderWindow window_;
     sf::Font debugFont_;
-
-    demo::InputSystem inputSystem_;
     
 	FpsManager fpsManager_;
 	StateManager stateManager_;

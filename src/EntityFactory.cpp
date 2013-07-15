@@ -13,7 +13,7 @@ EntityFactory::EntityFactory(InputSystem* system) {
     inputSystem_ = system;
 }
 
-void EntityFactory::assignInputSystem(InputSystem* system){
+void EntityFactory::assignInputSystem(const InputSystem* system){
     if (!inputSystem_){
         inputSystem_ = system;
     }

@@ -13,11 +13,11 @@ InputSystem::~InputSystem(){
     // Not responsible for deleting components
 }
 
-void InputSystem::registerComponent(InputComponent* component){
+void InputSystem::registerSink(InputComponent* component){
     component->setInputSystem(this);
 }
 
-void InputSystem::delegateEvent(sf::Event& ev){
+void InputSystem::delegateInputEvent(sf::Event& ev){
 
 }
 

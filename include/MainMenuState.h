@@ -10,8 +10,10 @@ class MainMenuState : public GameState {
     public:
         MainMenuState();
 
+        // Implementation : GameState
+
         void update(sf::Time delta);
-        void render(sf::RenderTarget* target);
+        void render(sf::RenderTarget* target) override;
         
         void onKeyPressed(int keycode);
         void onKeyReleased(int keycode);

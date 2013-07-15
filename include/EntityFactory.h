@@ -12,9 +12,9 @@ class EntityFactory
         EntityFactory();
         EntityFactory(InputSystem* system);
         Entity* createPlayer(int x, int y, int vx, int vy);
-        void assignInputSystem(InputSystem* system);
+        void assignInputSystem(const InputSystem* system);
     private:
-        InputSystem* inputSystem_ = nullptr;
+        const InputSystem* inputSystem_ = nullptr;
 }; // EntityFactory
 
 } // namespace demo
