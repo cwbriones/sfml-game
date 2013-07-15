@@ -49,17 +49,15 @@ void Game::gameLoop() {
         // User input/events
 		while ( window_.pollEvent(event) ){
 
-            if ( closeRequested(&event) || stateManager_.closeRequested() ){
+            if ( closeRequested(event) || stateManager_.closeRequested() ){
                 if (stateManager_.currentState()->readyForClose()){
                     window_.close();
                 }
-	        }
-            if ( event.type == sf::Event::KeyPressed ){
-                stateManager_.currentState()->onKeyPressed(event.key.code);
+	        } else {
+                checkForInputEvents(event);
             }
-            else if ( event.type == sf::Event::KeyReleased ){
-                stateManager_.currentState()->onKeyReleased(event.key.code);
-            }
+
+            
 
 		}
         // Game updates
@@ -102,10 +100,19 @@ void Game::gameLoop() {
     cleanup();
 }
 
-bool Game::closeRequested(sf::Event* event){
-    return event->type == sf::Event::Closed ||
-        (event->type == sf::Event::KeyPressed && 
-            event->key.code == sf::Keyboard::Escape);
+bool Game::closeRequested(sf::Event& event){
+    return event.type == sf::Event::Closed ||
+        (event.type == sf::Event::KeyPressed && 
+            event.key.code == sf::Keyboard::Escape);
+}
+
+void Game::checkForInputEvents(sf::Event& event){
+    if ( event.type == sf::Event::KeyPressed ){
+        stateManager_.currentState()->onKeyPressed(event.key.code);
+    }
+    else if ( event.type == sf::Event::KeyReleased ){
+        stateManager_.currentState()->onKeyReleased(event.key.code);
+    }
 }
 
 

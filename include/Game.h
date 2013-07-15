@@ -18,8 +18,11 @@ public:
 	void render(); 
     void renderStats();
     void update(sf::Time delta);
+
     void cleanup();
-    bool closeRequested(sf::Event* event);
+
+    bool closeRequested(sf::Event& ev);
+    void checkForInputEvents(sf::Event& ev);
 
     const int WIDTH;
 	const int HEIGHT;
