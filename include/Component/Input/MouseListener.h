@@ -5,10 +5,10 @@
 
 namespace demo {
 
-class MouseInputComponent : public InputComponent
+class MouseListener : public InputComponent
 {
     public:
-        MouseInputComponent();
+        MouseListener(){ type_ = InputType::MOUSE; }
     
 }; // MouseInputComponent
 

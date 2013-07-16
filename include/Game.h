@@ -9,7 +9,6 @@
 
 #include <string>
 
-
 class Game {
 public:
 	Game(int width, int height, std::string title, float fps);
@@ -25,6 +24,8 @@ public:
     bool closeRequested(sf::Event& ev);
     void checkForInputEvents(sf::Event& ev);
 
+    demo::InputSystem* getInputSystem();
+
     const int WIDTH;
 	const int HEIGHT;
 
@@ -35,6 +36,8 @@ private:
     
 	FpsManager fpsManager_;
 	StateManager stateManager_;
+
+    demo::InputSystem inputSystem_;
 
 	bool showDebug_;
 };

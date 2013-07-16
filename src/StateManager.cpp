@@ -1,10 +1,12 @@
 #include "StateManager.h"
+#include "Game.h"
 
 #include <iostream>
 /*
  * Create a state manager with the given initial state.
  */
-StateManager::StateManager() {
+StateManager::StateManager(Game* game) {
+    game_ = game;
 	currentState_ = nullptr;
     showUpdates_ = false;
     closeRequested_ = false;
@@ -104,6 +106,10 @@ bool StateManager::closeRequested(){
     }
 }
 
-const demo::InputSystem* const StateManager::getInputSystem(){
-    return &inputSystem_;
+Game* StateManager::game(){
+    return game_;
+}
+
+const demo::InputSystem* StateManager::getInputSystem(){
+    return game_->getInputSystem();
 }

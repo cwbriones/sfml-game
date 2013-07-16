@@ -7,10 +7,13 @@
 #include <string>
 #include <list>
 
+class Game;
+
 class StateManager {
 public:
-    StateManager();
-
+    StateManager(Game* game);
+   
+    Game* game();
     GameState* currentState();
 
     /*
@@ -34,8 +37,9 @@ public:
 
     void notify(std::string event, std::string message);
 
-    const demo::InputSystem* const getInputSystem();
+    const demo::InputSystem* getInputSystem();
 private:
+    Game* game_;
     GameState* currentState_;
 	std::list<GameState*> stateStack_;
     void clearStack();
@@ -43,8 +47,6 @@ private:
     std::list<GameState*> oldStates_;
     bool closeRequested_;
     bool showUpdates_;
-
-    demo::InputSystem inputSystem_;
 };
 
 #endif //STATEMANAGER_H

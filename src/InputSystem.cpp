@@ -15,17 +15,14 @@ InputSystem::~InputSystem(){
 
 void InputSystem::registerSink(InputComponent* component){
     switch(component->getType()){
-        case InputComponent::InputType::MOUSE:
-            component->setInputSystem(this);
-            mouseSinks_.push_back(component);
-            break;
         case InputComponent::InputType::KEYBOARD:
             component->setInputSystem(this);
-            keyboardSinks_.push_back(component);
+            break;
+        case InputComponent::InputType::MOUSE:
+            component->setInputSystem(this);
             break;
         case InputComponent::InputType::JOYSTICK:
             component->setInputSystem(this);
-            joystickSinks_.push_back(component);
             break;
         default:
             break;
@@ -33,15 +30,13 @@ void InputSystem::registerSink(InputComponent* component){
 }
 
 void InputSystem::delegateKeyboardEvent(sf::Event& ev){
-
-}
-
-void InputSystem::delegateJoystickEvent(sf::Event& ev){
-
+    for ( auto keyboardSink : keyboardSinks_) {
+    }
 }
 
 void InputSystem::delegateMouseEvent(sf::Event& ev){
-
+    for ( auto mouseSink : mouseSinks_ ){
+    }
 }
 
 } // namespace demo
