@@ -17,10 +17,10 @@ ShipGraphicsComponent::ShipGraphicsComponent() {
     const sf::Vector2f center_(SCALE * 6.0f, SCALE * 7.5f);
 
     for(int i = 0; i < NUM_VERTICES; i++){
-        vertices_[i].position = sf::Vector2f(SCALE * xCoords[i], SCALE * yCoords[i]);
+        vertices_[i].position = sf::Vector2f(SCALE * xCoords[i] - center_.x, SCALE * yCoords[i] - center_.y);
     }
     // Draw line to fully enclose shape
-    vertices_[NUM_VERTICES] = sf::Vector2f(SCALE * xCoords[0], SCALE * yCoords[0]);
+    vertices_[NUM_VERTICES] = sf::Vector2f(SCALE * xCoords[0] - center_.x, SCALE * yCoords[0] - center_.y);
 }
 
 void ShipGraphicsComponent::update(Entity& entity, int delta){

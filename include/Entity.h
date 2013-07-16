@@ -4,7 +4,7 @@
 #include "Vector2.h"
 #include "Component/GraphicsComponent.h"
 #include "Component/PhysicsComponent.h"
-#include "Component/InputComponent.h"
+#include "Component/Input/InputComponent.h"
 
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>

@@ -14,11 +14,22 @@ InputSystem::~InputSystem(){
 }
 
 void InputSystem::registerSink(InputComponent* component){
-    component->setInputSystem(this);
-}
-
-void InputSystem::delegateInputEvent(sf::Event& ev){
-
+    switch(component->getType()){
+        case InputComponent::InputType::MOUSE:
+            component->setInputSystem(this);
+            mouseSinks_.push_back(component);
+            break;
+        case InputComponent::InputType::KEYBOARD:
+            component->setInputSystem(this);
+            keyboardSinks_.push_back(component);
+            break;
+        case InputComponent::InputType::JOYSTICK:
+            component->setInputSystem(this);
+            joystickSinks_.push_back(component);
+            break;
+        default:
+            break;
+    }
 }
 
 void InputSystem::delegateKeyboardEvent(sf::Event& ev){

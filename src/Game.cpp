@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "FpsManager.h"
 #include "MainMenuState.h"
 
 #include <iostream>
@@ -113,6 +112,7 @@ void Game::checkForInputEvents(sf::Event& event){
     else if ( event.type == sf::Event::KeyReleased ){
         stateManager_.currentState()->onKeyReleased(event.key.code);
     }
+
 }
 
 

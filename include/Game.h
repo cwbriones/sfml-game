@@ -3,11 +3,12 @@
 
 #include "FpsManager.h"
 #include "StateManager.h"
+#include "InputSystem.h"
+
+#include <SFML/Graphics.hpp>
 
 #include <string>
 
-#include "InputSystem.h"
-#include <SFML/Graphics.hpp>
 
 class Game {
 public:

@@ -1,13 +1,14 @@
 -std=c++11
-<<<<<<< HEAD
 -I/usr/local/include/
-=======
 -stdlib=libc++
->>>>>>> 945a7d10b1f98f6887e83fff6d21e849be7b5e3d
 -I/usr/local/include/SFML/
 -I/usr/local/include/SFML/Graphics/
 -I/usr/local/include/SFML/System/
 -I/usr/local/include/SFML/Window/
 -I.
+
 -I./include
--I./include/Component
+-I./include/*/
+
+-I../include/
+-I../include/*

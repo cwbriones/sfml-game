@@ -2,6 +2,7 @@
 #define DEMO_INPUT_SYSTEM_H 
 
 #include <SFML/Window/Event.hpp>
+
 #include <list>
 
 namespace demo {
@@ -13,15 +14,15 @@ class InputSystem
 public:
     InputSystem();
     ~InputSystem();
-    virtual void delegateInputEvent(sf::Event& ev);
     void registerSink(InputComponent* component);
-private:
+
     void delegateKeyboardEvent(sf::Event& ev);
     void delegateJoystickEvent(sf::Event& ev);
     void delegateMouseEvent(sf::Event& ev);
-
-    std::list<InputComponent*> registered_;
-
+private:
+    std::list<InputComponent*> keyboardSinks_;
+    std::list<InputComponent*> mouseSinks_;
+    std::list<InputComponent*> joystickSinks_;
     // TODO: Add an input mapping?
 
 }; // InputSystem
