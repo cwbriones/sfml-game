@@ -18,9 +18,11 @@ public:
     ~InputSystem();
     void registerSink(InputComponent* component);
 
+    bool checkForInputEvents(sf::Event& ev);
+
+private:
     void delegateKeyboardEvent(sf::Event& ev);
     void delegateMouseEvent(sf::Event& ev);
-private:
     std::list<KeyboardListener*> keyboardSinks_;
     std::list<MouseListener*> mouseSinks_;
     // TODO: Add an input mapping?

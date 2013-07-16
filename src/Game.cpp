@@ -112,24 +112,7 @@ void Game::checkForInputEvents(sf::Event& event){
     else if ( event.type == sf::Event::KeyReleased ){
         stateManager_.currentState()->onKeyReleased(event.key.code);
     }
-    else if ( event.type == sf::Event::MouseMoved ){
-
-    }
-    else if ( event.type == sf::Event::MouseWheelMoved ){
-
-    }
-    else if ( event.type == sf::Event::MouseButtonPressed ){
-
-    }
-    else if ( event.type == sf::Event::MouseButtonReleased ){
-
-    }
-    else if ( event.type == sf::Event::MouseEntered ){
-
-    }
-    else if ( event.type == sf::Event::MouseLeft ){
-
-    }
+    inputSystem_.checkForInputEvents(event);
 }
 
 
