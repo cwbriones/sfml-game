@@ -8,8 +8,9 @@ namespace demo {
 class KeyboardListener : public InputComponent {
     public:
         KeyboardListener(){ type_ = InputType::KEYBOARD; };
-        virtual void onKeyPressed(int keycode) = 0;
-        virtual void onKeyReleased(int keycode) = 0;
+
+        virtual void onKeyPressed(KeyEvent ke) = 0;
+        virtual void onKeyReleased(KeyEvent ke) = 0;
 };
     
 } /* namespace demo */

@@ -3,6 +3,8 @@
 
 #include <SFML/Window/Event.hpp>
 
+// TODO: Remove input receiving entities once they are destroyed
+
 namespace demo {
 
 InputSystem::InputSystem(){
@@ -13,20 +15,14 @@ InputSystem::~InputSystem(){
     // Not responsible for deleting components
 }
 
-void InputSystem::registerSink(InputComponent* component){
-    switch(component->getType()){
-        case InputComponent::InputType::KEYBOARD:
-            component->setInputSystem(this);
-            break;
-        case InputComponent::InputType::MOUSE:
-            component->setInputSystem(this);
-            break;
-        case InputComponent::InputType::JOYSTICK:
-            component->setInputSystem(this);
-            break;
-        default:
-            break;
-    }
+void InputSystem::registerSink(MouseListener* comp){
+    comp->setInputSystem(this);
+    mouseSinks_.push_back(comp);
+}
+
+void InputSystem::registerSink(KeyboardListener* comp){
+    comp->setInputSystem(this);
+    keyboardSinks_.push_back(comp);
 }
 
 bool InputSystem::checkForInputEvents(sf::Event& event){
@@ -57,16 +53,6 @@ bool InputSystem::checkForInputEvents(sf::Event& event){
         return true;
     }
     return false;
-}
-
-void InputSystem::delegateKeyboardEvent(sf::Event& ev){
-    for ( auto keyboardSink : keyboardSinks_) {
-    }
-}
-
-void InputSystem::delegateMouseEvent(sf::Event& ev){
-    for ( auto mouseSink : mouseSinks_ ){
-    }
 }
 
 } // namespace demo

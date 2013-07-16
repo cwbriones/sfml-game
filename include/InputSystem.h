@@ -16,15 +16,15 @@ class InputSystem
 public:
     InputSystem();
     ~InputSystem();
-    void registerSink(InputComponent* component);
 
+    void registerSink(KeyboardListener* comp);
+    void registerSink(MouseListener* comp);
     bool checkForInputEvents(sf::Event& ev);
-
 private:
-    void delegateKeyboardEvent(sf::Event& ev);
-    void delegateMouseEvent(sf::Event& ev);
+
     std::list<KeyboardListener*> keyboardSinks_;
     std::list<MouseListener*> mouseSinks_;
+    
     // TODO: Add an input mapping?
 
 }; // InputSystem
