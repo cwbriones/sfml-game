@@ -2,14 +2,13 @@
 #define DEMO_INPUT_COMPONENT_H
 
 #include <SFML/Window/Event.hpp>
+#include "InputSystem.h"
 
 namespace demo {
 
 class Entity;
-class InputSystem;
 
 typedef sf::Event::KeyEvent KeyEvent;
-
 typedef sf::Event::MouseButtonEvent MouseButtonEvent;
 typedef sf::Event::MouseWheelEvent MouseWheelEvent;
 typedef sf::Event::MouseMoveEvent MouseMoveEvent;
@@ -24,18 +23,18 @@ public:
         UNDEFINED
     };
 
-    virtual ~InputComponent();
+    virtual ~InputComponent(){};
     virtual void update(Entity& owner, int delta) = 0;
 
-    void setInputSystem(const InputSystem* system){
-        if (!system_){
-            system_ = system;
+    void setInputSystem(InputSystem* system){
+        if (!inputSystem_){
+            inputSystem_ = system;
         }
     }
     InputType getType(){ return type_; };
 protected:
     InputType type_ = InputType::UNDEFINED;
-    const InputSystem* system_ = nullptr;
+    InputSystem* inputSystem_ = nullptr;
 }; // InputComponent
 
 } // namespace demo

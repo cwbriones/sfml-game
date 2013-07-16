@@ -2,8 +2,6 @@
 #define CREDITS_STATE
 
 #include "GameState.h"
-#include "Menu.h"
-
 #include <SFML/Graphics.hpp>
 
 class CreditsState : public GameState {

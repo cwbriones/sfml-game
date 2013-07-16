@@ -3,13 +3,21 @@
 
 #include "Component/Input/InputComponent.h"
 
+#include <SFML/Window/Mouse.hpp>
+#include <SFML/Window/Event.hpp>
+
 namespace demo {
 
 class MouseListener : public InputComponent
 {
     public:
         MouseListener(){ type_ = InputType::MOUSE; }
-    
+        ~MouseListener(){ 
+            if(inputSystem_){
+                inputSystem_->deregisterSink(this);
+            }
+        }
+        virtual void update(Entity& owner, int delta) = 0;
 }; // MouseInputComponent
 
 } // namespace demo

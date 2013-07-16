@@ -2,11 +2,12 @@
 #define DEMO_INPUT_SYSTEM_H 
 
 #include <SFML/Window/Event.hpp>
-#include "Component/Input.h"
-
 #include <list>
 
 namespace demo {
+
+class KeyboardListener;
+class MouseListener;
 
 /*
  * Central dispatcher for all input events.
@@ -19,6 +20,10 @@ public:
 
     void registerSink(KeyboardListener* comp);
     void registerSink(MouseListener* comp);
+
+    void deregisterSink(KeyboardListener* comp);
+    void deregisterSink(MouseListener* comp);
+
     bool checkForInputEvents(sf::Event& ev);
 private:
 

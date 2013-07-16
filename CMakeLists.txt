@@ -25,12 +25,14 @@ add_executable(${EXECUTABLE_NAME}
                 src/StateManager.cpp
                 src/GameplayState.cpp
                 src/CreditsState.cpp
-                src/Button.cpp
-                src/Menu.cpp
                 src/ShipGraphicsComponent.cpp
                 src/Entity.cpp
                 src/EntityFactory.cpp
                 src/InputSystem.cpp
+
+                src/Menu/Menu.cpp
+                src/Menu/Button.cpp
+                src/Menu/MenuKeyListener.cpp
 )
 
 #Set compiler flags

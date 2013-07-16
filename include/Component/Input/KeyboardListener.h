@@ -3,12 +3,21 @@
 
 #include "InputComponent.h"
 
+#include <SFML/Window/Keyboard.hpp>
+
 namespace demo {
 
 class KeyboardListener : public InputComponent {
     public:
-        KeyboardListener(){ type_ = InputType::KEYBOARD; };
+        KeyboardListener(){ type_ = InputType::KEYBOARD; }
+        ~KeyboardListener(){
+            if ( inputSystem_ ){
+                inputSystem_->deregisterSink(this);
+            }
+        }
 
+
+        virtual void update(Entity& owner, int delta) = 0;
         virtual void onKeyPressed(KeyEvent ke) = 0;
         virtual void onKeyReleased(KeyEvent ke) = 0;
 };

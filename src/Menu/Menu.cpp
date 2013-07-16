@@ -1,11 +1,10 @@
-#include "Button.h"
-#include "Menu.h"
+#include "Menu/Menu.h"
 
 #include <string>
 #include <unordered_map>
 #include <iostream>
 
-Menu::Menu(std::string fontPath){
+Menu::Menu(std::string fontPath) : keyListener_(this) {
     if(!font_.loadFromFile(fontPath)){
         std::cerr << "Error loading menu font from " << fontPath << std::endl; 
     }

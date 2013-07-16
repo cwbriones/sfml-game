@@ -3,6 +3,8 @@
 #include "CreditsState.h"
 #include "StateManager.h"
 
+#include "Menu/Menu.h"
+
 #include <SFML/Window/Keyboard.hpp>
 
 #include <iostream>

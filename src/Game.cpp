@@ -53,7 +53,7 @@ void Game::gameLoop() {
                     window_.close();
                 }
 	        } else {
-                checkForInputEvents(event);
+                inputSystem_.checkForInputEvents(event);
             }
 
             
@@ -106,12 +106,6 @@ bool Game::closeRequested(sf::Event& event){
 }
 
 void Game::checkForInputEvents(sf::Event& event){
-    if ( event.type == sf::Event::KeyPressed ){
-        stateManager_.currentState()->onKeyPressed(event.key.code);
-    }
-    else if ( event.type == sf::Event::KeyReleased ){
-        stateManager_.currentState()->onKeyReleased(event.key.code);
-    }
     inputSystem_.checkForInputEvents(event);
 }
 
