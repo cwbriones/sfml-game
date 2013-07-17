@@ -27,9 +27,7 @@ public:
     virtual void update(Entity& owner, int delta) = 0;
 
     void setInputSystem(InputSystem* system){
-        if (!inputSystem_){
-            inputSystem_ = system;
-        }
+        inputSystem_ = system;
     }
     InputType getType(){ return type_; };
 protected:

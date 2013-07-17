@@ -12,7 +12,7 @@ Menu::Menu(demo::InputSystem* system, std::string fontPath) : keyListener_(this)
     text_.setCharacterSize(12);
 
     selection_ = buttons_.begin();
-    keyListener_.setInputSystem(system);
+    system->registerSink(&keyListener_);
 }
 
 Menu::~Menu(){

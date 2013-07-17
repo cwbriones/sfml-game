@@ -6,8 +6,6 @@
 #include "Menu/Menu.h"
 
 #include <SFML/Window/Keyboard.hpp>
-
-#include <iostream>
 #include <cstdlib>
 
 MainMenuState::MainMenuState() : menu_(&inputSystem_, "../res/Arial.ttf") { 

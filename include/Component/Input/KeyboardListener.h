@@ -16,7 +16,6 @@ class KeyboardListener : public InputComponent {
             }
         }
 
-
         virtual void update(Entity& owner, int delta) = 0;
         virtual void onKeyPressed(KeyEvent ke) = 0;
         virtual void onKeyReleased(KeyEvent ke) = 0;

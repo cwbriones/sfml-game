@@ -82,6 +82,7 @@ void StateManager::clearStack(){
         oldStates_.push_back(oldState);
         stateStack_.pop_back();
     }
+    currentState_ = nullptr;
     sendInputToCurrentState();
 }
 
@@ -91,6 +92,7 @@ GameState* StateManager::currentState(){
 
 void StateManager::clean(){
     while (!oldStates_.empty()){
+        notify("Deleting", oldStates_.back()->getName());
         delete oldStates_.back();
         oldStates_.pop_back();
     }
@@ -99,8 +101,6 @@ void StateManager::clean(){
 void StateManager::clearAll(){
     clearStack();
     clean();
-    currentState_ = nullptr;
-    sendInputToCurrentState();
 }
 
 void StateManager::requestClose(){
