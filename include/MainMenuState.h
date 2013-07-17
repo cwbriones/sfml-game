@@ -16,8 +16,6 @@ class MainMenuState : public GameState {
         void render(sf::RenderTarget* target) override;
 
         void onEnter();
-
-        bool readyForClose(){ return true; };
     private:
         Menu menu_;
 };

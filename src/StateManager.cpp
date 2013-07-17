@@ -13,6 +13,11 @@ StateManager::StateManager(Game* game) {
     sendInputToCurrentState();
 }
 
+StateManager::~StateManager(){
+    clearStack();
+    clean();
+}
+
 void StateManager::notify(std::string event, std::string message){
     if (! showUpdates_){
         return;
@@ -62,9 +67,7 @@ void StateManager::pushState(GameState* newState){
 
 void StateManager::clearToState(GameState* newState){
     newState->setManager(this);
-    if (!stateStack_.empty()){
-        clearAll();
-    }
+    clearStack();
     notify("State Clear", "Successful"); 
 
     currentState_ = newState;
@@ -96,11 +99,6 @@ void StateManager::clean(){
         delete oldStates_.back();
         oldStates_.pop_back();
     }
-}
-
-void StateManager::clearAll(){
-    clearStack();
-    clean();
 }
 
 void StateManager::requestClose(){

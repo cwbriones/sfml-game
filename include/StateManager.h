@@ -12,7 +12,8 @@ class Game;
 class StateManager {
 public:
     StateManager(Game* game);
-   
+    ~StateManager(); 
+
     Game* game();
     GameState* currentState();
 

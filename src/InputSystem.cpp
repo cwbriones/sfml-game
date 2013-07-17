@@ -2,8 +2,8 @@
 #include "Component/Input.h"
 #include "Entity.h"
 
-#include <SFML/Window/Event.hpp>
 #include <iostream>
+#include <SFML/Window/Event.hpp>
 
 // TODO: Remove input receiving entities once they are destroyed
 

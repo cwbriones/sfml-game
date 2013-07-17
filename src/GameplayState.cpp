@@ -16,6 +16,8 @@ GameplayState::GameplayState() {
     text_.setFont(font_);
     text_.setCharacterSize(12);
     text_.setString("This is where your gameplay would occur.");
+
+    factory_.assignInputSystem(&inputSystem_);
 }
 
 GameplayState::~GameplayState(){
@@ -44,6 +46,5 @@ void GameplayState::render(sf::RenderTarget* target){
 }
 
 void GameplayState::onEnter(){
-    factory_.assignInputSystem(&inputSystem_);
     createEntities();
 }

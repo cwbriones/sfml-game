@@ -31,8 +31,7 @@ public:
 
     virtual void onHidden(){};
     virtual void onRevealed(){};
-
-    virtual bool readyForClose(){ return false; }
+    virtual bool readyForClose(){ return true; }
 
     void setManager(StateManager* manager){ 
         if (!manager_)

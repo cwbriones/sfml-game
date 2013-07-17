@@ -108,7 +108,7 @@ void Game::setActiveInputSystem(demo::InputSystem* system){
 }
 
 void Game::cleanup(){
-    stateManager_.clearAll();
+
 }
 
 void Game::update(sf::Time delta) {

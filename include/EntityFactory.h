@@ -10,7 +10,6 @@ class EntityFactory
 {
     public:
         EntityFactory();
-        EntityFactory(InputSystem* system);
         Entity* createPlayer(int x, int y, int vx, int vy);
         void assignInputSystem(const InputSystem* system);
     private:
