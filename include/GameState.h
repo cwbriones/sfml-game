@@ -1,6 +1,8 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
+#include "InputSystem.h"
+
 #include <SFML/Graphics.hpp>
 
 #include <string>
@@ -30,9 +32,6 @@ public:
     virtual void onHidden(){};
     virtual void onRevealed(){};
 
-    virtual void onKeyPressed(int keycode) = 0;
-    virtual void onKeyReleased(int keycode) = 0;
-
     virtual bool readyForClose(){ return false; }
 
     void setManager(StateManager* manager){ 
@@ -41,9 +40,13 @@ public:
     };
 
     std::string getName(){ return name_; };
+    virtual demo::InputSystem* getInputSystem(){
+        return &inputSystem_;
+    }
 protected:
     std::string name_ = "";
     StateManager* manager_ = nullptr;
+    demo::InputSystem inputSystem_;
 };
 
 #endif // GAMESTATE_H

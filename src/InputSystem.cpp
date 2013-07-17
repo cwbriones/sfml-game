@@ -34,7 +34,7 @@ void InputSystem::registerSink(KeyboardListener* comp){
     keyboardSinks_.push_back(comp);
 }
 
-bool InputSystem::checkForInputEvents(sf::Event& event){
+bool InputSystem::dispatchInputEvents(sf::Event& event){
     // Keyboard Events
     if ( event.type == sf::Event::KeyPressed ){
         for (auto& keyboardSink : keyboardSinks_) {

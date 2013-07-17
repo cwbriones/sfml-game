@@ -35,16 +35,6 @@ void GameplayState::update(sf::Time delta){
     }
 }
 
-void GameplayState::onKeyPressed(int keycode){
-
-}
-
-void GameplayState::onKeyReleased(int keycode){
-    if (keycode == sf::Keyboard::Escape){
-        manager_->clearToState(new MainMenuState());
-    }
-}
-
 void GameplayState::render(sf::RenderTarget* target){
     target->draw(text_);
 
@@ -54,6 +44,6 @@ void GameplayState::render(sf::RenderTarget* target){
 }
 
 void GameplayState::onEnter(){
-    factory_.assignInputSystem(manager_->getInputSystem());
+    factory_.assignInputSystem(&inputSystem_);
     createEntities();
 }

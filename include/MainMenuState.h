@@ -14,9 +14,6 @@ class MainMenuState : public GameState {
 
         void update(sf::Time delta);
         void render(sf::RenderTarget* target) override;
-        
-        void onKeyPressed(int keycode);
-        void onKeyReleased(int keycode);
 
         void onEnter();
 

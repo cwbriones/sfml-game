@@ -24,7 +24,7 @@ public:
     void deregisterSink(KeyboardListener* comp);
     void deregisterSink(MouseListener* comp);
 
-    bool checkForInputEvents(sf::Event& ev);
+    bool dispatchInputEvents(sf::Event& ev);
 private:
 
     std::list<KeyboardListener*> keyboardSinks_;

@@ -18,9 +18,6 @@ class GameplayState : public GameState {
 
         virtual void update(sf::Time delta) override;
         virtual void render(sf::RenderTarget* target) override;
-        
-        virtual void onKeyPressed(int keycode) override;
-        virtual void onKeyReleased(int keycode) override;
 
         virtual void onEnter() override;
         void createEntities(); 

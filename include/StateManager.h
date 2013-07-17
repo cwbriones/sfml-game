@@ -36,8 +36,7 @@ public:
     void toggleUpdates();
 
     void notify(std::string event, std::string message);
-
-    const demo::InputSystem* getInputSystem();
+    void sendInputToCurrentState();
 private:
     Game* game_;
     GameState* currentState_;

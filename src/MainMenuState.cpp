@@ -24,19 +24,6 @@ void MainMenuState::onEnter(){
     menu_.addItem("Exit", [&](){ this->manager_->requestClose(); });
 }
 
-void MainMenuState::onKeyPressed(int keycode){
-    if (keycode == sf::Keyboard::Up){
-        menu_.decrementSelection();
-    } else if (keycode == sf::Keyboard::Down) {
-        menu_.incrementSelection();
-    } else if (keycode == sf::Keyboard::Return){
-        menu_.activateSelection();
-    }
-}
-
-void MainMenuState::onKeyReleased(int keycode){
-}
-
 void MainMenuState::update(sf::Time delta){
     if (menu_.isActive("Start Game")){
         manager_->clearToState(new GameplayState());

@@ -110,6 +110,6 @@ Game* StateManager::game(){
     return game_;
 }
 
-const demo::InputSystem* StateManager::getInputSystem(){
-    return game_->getInputSystem();
+void StateManager::sendInputToCurrentState(){
+
 }

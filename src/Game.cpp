@@ -53,11 +53,8 @@ void Game::gameLoop() {
                     window_.close();
                 }
 	        } else {
-                inputSystem_.checkForInputEvents(event);
+                // inputSystem_.checkForInputEvents(event);
             }
-
-            
-
 		}
         // Game updates
         update(elapsed);
@@ -105,8 +102,12 @@ bool Game::closeRequested(sf::Event& event){
             event.key.code == sf::Keyboard::Escape);
 }
 
+void Game::setActiveInputSystem(demo::InputSystem* system){
+    activeInputSystem_ = system;
+}
+
 void Game::checkForInputEvents(sf::Event& event){
-    inputSystem_.checkForInputEvents(event);
+    activeInputSystem_->dispatchInputEvents(event);
 }
 
 
@@ -156,8 +157,4 @@ void Game::renderStats(){
     text.setColor(sf::Color::White);
     text.setPosition(0, 30);
     window_.draw(text);
-}
-
-demo::InputSystem* Game::getInputSystem(){
-    return &inputSystem_;
 }

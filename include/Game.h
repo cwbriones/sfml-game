@@ -24,12 +24,12 @@ public:
     bool closeRequested(sf::Event& ev);
     void checkForInputEvents(sf::Event& ev);
 
-    demo::InputSystem* getInputSystem();
-
     const int WIDTH;
 	const int HEIGHT;
 
 	const std::string TITLE;
+    void setActiveInputSystem(demo::InputSystem* system);
+    
 private:
 	sf::RenderWindow window_;
     sf::Font debugFont_;
@@ -37,7 +37,7 @@ private:
 	FpsManager fpsManager_;
 	StateManager stateManager_;
 
-    demo::InputSystem inputSystem_;
+    demo::InputSystem* activeInputSystem_ = nullptr;
 
 	bool showDebug_;
 };
