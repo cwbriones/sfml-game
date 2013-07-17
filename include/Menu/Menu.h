@@ -10,9 +10,13 @@
 #include <string>
 #include <unordered_map>
 
+namespace demo {
+    class InputSystem;
+}
+
 class Menu : public sf::Transformable {
     public:
-        Menu(std::string fontPath);
+        Menu(demo::InputSystem* system, std::string fontPath);
         ~Menu();
         void addItem(std::string item_);
         void addItem(std::string item_, std::function<void()> onPress);

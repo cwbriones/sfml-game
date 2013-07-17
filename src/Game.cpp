@@ -16,6 +16,7 @@ Game::Game(int width, int height, std::string title, float fps) : WIDTH(width),
         exit(1);
     }
     showDebug_ = false;
+    stateManager_.toggleUpdates();
 }
 
 Game::~Game(){}
@@ -39,7 +40,6 @@ void Game::gameLoop() {
     int skips = 0;
 
     stateManager_.clearToState(new MainMenuState());
-    stateManager_.toggleUpdates();
     sf::Clock clock;
 
 	while( window_.isOpen() ){
@@ -54,6 +54,7 @@ void Game::gameLoop() {
                 }
 	        } else {
                 // inputSystem_.checkForInputEvents(event);
+                activeInputSystem_->dispatchInputEvents(event);
             }
 		}
         // Game updates
@@ -105,11 +106,6 @@ bool Game::closeRequested(sf::Event& event){
 void Game::setActiveInputSystem(demo::InputSystem* system){
     activeInputSystem_ = system;
 }
-
-void Game::checkForInputEvents(sf::Event& event){
-    activeInputSystem_->dispatchInputEvents(event);
-}
-
 
 void Game::cleanup(){
     stateManager_.clearAll();

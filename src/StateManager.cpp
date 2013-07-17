@@ -66,9 +66,11 @@ void StateManager::clearToState(GameState* newState){
         clearAll();
     }
     notify("State Clear", "Successful"); 
+
+    currentState_ = newState;
     stateStack_.push_back(newState);
-    currentState_ = stateStack_.back();
     currentState_->onEnter();
+
     notify("Entering", currentState_->getName());
     sendInputToCurrentState();
 }
@@ -119,7 +121,9 @@ Game* StateManager::game(){
 void StateManager::sendInputToCurrentState(){
     if(currentState_){
         game_->setActiveInputSystem(currentState_->getInputSystem());
+        notify("Switched active input", currentState_->getName() );
     } else {
         game_->setActiveInputSystem(&nullInputSystem_);
+        notify("Switched active input", "NULL INPUT");
     }
 }

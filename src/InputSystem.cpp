@@ -3,6 +3,7 @@
 #include "Entity.h"
 
 #include <SFML/Window/Event.hpp>
+#include <iostream>
 
 // TODO: Remove input receiving entities once they are destroyed
 
