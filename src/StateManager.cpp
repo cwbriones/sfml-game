@@ -10,6 +10,7 @@ StateManager::StateManager(Game* game) {
 	currentState_ = nullptr;
     showUpdates_ = false;
     closeRequested_ = false;
+    sendInputToCurrentState();
 }
 
 void StateManager::notify(std::string event, std::string message){
@@ -41,6 +42,7 @@ void StateManager::popState(){
     } else {
         currentState_ = nullptr;
     }
+    sendInputToCurrentState();
  }
 
 void StateManager::pushState(GameState* newState){
@@ -55,6 +57,7 @@ void StateManager::pushState(GameState* newState){
 
     currentState_ = stateStack_.back();
     notify("Entering", currentState_->getName());
+    sendInputToCurrentState();
 }
 
 void StateManager::clearToState(GameState* newState){
@@ -67,6 +70,7 @@ void StateManager::clearToState(GameState* newState){
     currentState_ = stateStack_.back();
     currentState_->onEnter();
     notify("Entering", currentState_->getName());
+    sendInputToCurrentState();
 }
 
 void StateManager::clearStack(){
@@ -76,6 +80,7 @@ void StateManager::clearStack(){
         oldStates_.push_back(oldState);
         stateStack_.pop_back();
     }
+    sendInputToCurrentState();
 }
 
 GameState* StateManager::currentState(){
@@ -93,6 +98,7 @@ void StateManager::clearAll(){
     clearStack();
     clean();
     currentState_ = nullptr;
+    sendInputToCurrentState();
 }
 
 void StateManager::requestClose(){
@@ -111,5 +117,9 @@ Game* StateManager::game(){
 }
 
 void StateManager::sendInputToCurrentState(){
-
+    if(currentState_){
+        game_->setActiveInputSystem(currentState_->getInputSystem());
+    } else {
+        game_->setActiveInputSystem(&nullInputSystem_);
+    }
 }

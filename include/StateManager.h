@@ -46,6 +46,7 @@ private:
     std::list<GameState*> oldStates_;
     bool closeRequested_;
     bool showUpdates_;
+    demo::InputSystem nullInputSystem_;
 };
 
 #endif //STATEMANAGER_H
