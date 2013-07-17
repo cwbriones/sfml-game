@@ -16,6 +16,7 @@ public:
 
     Game* game();
     GameState* currentState();
+    GameState* hiddenState();
 
     /*
      * void StateManager::clean()
@@ -39,8 +40,10 @@ public:
     void notify(std::string event, std::string message);
     void sendInputToCurrentState();
 private:
-    Game* game_;
-    GameState* currentState_;
+    Game* game_ = nullptr;
+    GameState* currentState_ = nullptr;
+    GameState* hiddenState_ = nullptr;
+
 	std::list<GameState*> stateStack_;
     void clearStack();
 

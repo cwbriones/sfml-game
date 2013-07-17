@@ -8,6 +8,7 @@
 StateManager::StateManager(Game* game) {
     game_ = game;
 	currentState_ = nullptr;
+
     showUpdates_ = false;
     closeRequested_ = false;
     sendInputToCurrentState();
@@ -32,14 +33,18 @@ void StateManager::toggleUpdates(){
 }
 
 void StateManager::popState(){
-    GameState* oldState = stateStack_.back();
-    oldState->onExit();
-
     notify("Exiting", currentState_->getName());
 
-    oldStates_.push_back(oldState);
+    currentState_->onExit();
+    oldStates_.push_back(currentState_);
     stateStack_.pop_back();
-
+    
+   if (stateStack_.size() > 1){
+        // New hiddenState_
+        hiddenState_ = *(++stateStack_.rbegin());
+    } else {
+        hiddenState_ = nullptr;
+    } 
     if (stateStack_.size() > 0){
         currentState_ = stateStack_.back();
         currentState_->onRevealed();
@@ -55,6 +60,7 @@ void StateManager::pushState(GameState* newState){
     if (stateStack_.size() > 0){
         stateStack_.back()->onHidden();
         notify("Hiding", currentState_->getName());
+        hiddenState_ = currentState_;
     }
 
     stateStack_.push_back(newState);
@@ -86,11 +92,16 @@ void StateManager::clearStack(){
         stateStack_.pop_back();
     }
     currentState_ = nullptr;
+    hiddenState_ = nullptr;
     sendInputToCurrentState();
 }
 
 GameState* StateManager::currentState(){
     return currentState_;
+}
+
+GameState* StateManager::hiddenState(){
+    return hiddenState_;
 }
 
 void StateManager::clean(){
