@@ -3,7 +3,6 @@
 
 #include "FpsManager.h"
 #include "StateManager.h"
-#include "InputSystem.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -18,7 +17,6 @@ public:
 	void render(); 
     void renderStats();
     void update(sf::Time delta);
-    void setActiveInputSystem(demo::InputSystem* system);
 
     void cleanup();
     bool closeRequested(sf::Event& ev);
@@ -33,8 +31,6 @@ private:
     
 	FpsManager fpsManager_;
 	StateManager stateManager_;
-
-    demo::InputSystem* activeInputSystem_ = nullptr;
 
 	bool showDebug_;
 };

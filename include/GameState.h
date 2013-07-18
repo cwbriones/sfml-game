@@ -1,8 +1,6 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
-#include "InputSystem.h"
-
 #include <SFML/Graphics.hpp>
 
 #include <string>
@@ -40,13 +38,9 @@ public:
     };
 
     std::string getName(){ return name_; };
-    virtual demo::InputSystem* getInputSystem(){
-        return &inputSystem_;
-    }
 protected:
     std::string name_ = "";
     StateManager* manager_ = nullptr;
-    demo::InputSystem inputSystem_;
 };
 
 #endif // GAMESTATE_H

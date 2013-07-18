@@ -9,12 +9,6 @@ namespace demo {
 EntityFactory::EntityFactory(){
 }
 
-void EntityFactory::assignInputSystem(const InputSystem* system){
-    if (!inputSystem_){
-        inputSystem_ = system;
-    }
-}
-
 Entity* EntityFactory::createPlayer(int x, int y, int vx, int vy){
 
     Entity* player = new Entity("player", 200, 200, 0, 0);

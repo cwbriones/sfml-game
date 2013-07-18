@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <iostream>
 
-Menu::Menu(demo::InputSystem* system, std::string fontPath) : keyListener_(this) {
+Menu::Menu(std::string fontPath) {
     if(!font_.loadFromFile(fontPath)){
         std::cerr << "Error loading menu font from " << fontPath << std::endl; 
     }
@@ -12,7 +12,6 @@ Menu::Menu(demo::InputSystem* system, std::string fontPath) : keyListener_(this)
     text_.setCharacterSize(12);
 
     selection_ = buttons_.begin();
-    system->registerSink(&keyListener_);
 }
 
 Menu::~Menu(){

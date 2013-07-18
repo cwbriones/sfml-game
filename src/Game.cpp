@@ -53,8 +53,7 @@ void Game::gameLoop() {
                     window_.close();
                 }
 	        } else {
-                // inputSystem_.checkForInputEvents(event);
-                activeInputSystem_->dispatchInputEvents(event);
+
             }
 		}
         // Game updates
@@ -101,10 +100,6 @@ bool Game::closeRequested(sf::Event& event){
     return event.type == sf::Event::Closed ||
         (event.type == sf::Event::KeyPressed && 
             event.key.code == sf::Keyboard::Escape);
-}
-
-void Game::setActiveInputSystem(demo::InputSystem* system){
-    activeInputSystem_ = system;
 }
 
 void Game::cleanup(){

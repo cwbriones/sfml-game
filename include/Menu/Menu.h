@@ -1,7 +1,6 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include "Menu/MenuKeyListener.h"
 #include "Button.h"
 
 #include <SFML/Graphics.hpp>
@@ -16,7 +15,7 @@ namespace demo {
 
 class Menu : public sf::Transformable {
     public:
-        Menu(demo::InputSystem* system, std::string fontPath);
+        Menu(std::string fontPath);
         ~Menu();
         void addItem(std::string item_);
         void addItem(std::string item_, std::function<void()> onPress);
@@ -41,7 +40,6 @@ class Menu : public sf::Transformable {
         std::unordered_map<std::string, bool> hasMouse_;
 
         std::vector<Button*>::iterator selection_;
-        demo::MenuKeyListener keyListener_;
 
         void resize();
 };

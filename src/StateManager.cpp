@@ -11,7 +11,6 @@ StateManager::StateManager(Game* game) {
 
     showUpdates_ = false;
     closeRequested_ = false;
-    sendInputToCurrentState();
 }
 
 StateManager::~StateManager(){
@@ -52,7 +51,6 @@ void StateManager::popState(){
     } else {
         currentState_ = nullptr;
     }
-    sendInputToCurrentState();
  }
 
 void StateManager::pushState(GameState* newState){
@@ -68,7 +66,6 @@ void StateManager::pushState(GameState* newState){
 
     currentState_ = stateStack_.back();
     notify("Entering", currentState_->getName());
-    sendInputToCurrentState();
 }
 
 void StateManager::clearToState(GameState* newState){
@@ -81,7 +78,6 @@ void StateManager::clearToState(GameState* newState){
     currentState_->onEnter();
 
     notify("Entering", currentState_->getName());
-    sendInputToCurrentState();
 }
 
 void StateManager::clearStack(){
@@ -93,7 +89,6 @@ void StateManager::clearStack(){
     }
     currentState_ = nullptr;
     hiddenState_ = nullptr;
-    sendInputToCurrentState();
 }
 
 GameState* StateManager::currentState(){
@@ -125,14 +120,4 @@ bool StateManager::closeRequested(){
 
 Game* StateManager::game(){
     return game_;
-}
-
-void StateManager::sendInputToCurrentState(){
-    if(currentState_){
-        game_->setActiveInputSystem(currentState_->getInputSystem());
-        notify("Switched active input", currentState_->getName() );
-    } else {
-        game_->setActiveInputSystem(&nullInputSystem_);
-        notify("Switched active input", "NULL INPUT");
-    }
 }

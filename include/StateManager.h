@@ -1,7 +1,6 @@
 #ifndef STATEMANAGER_H
 #define STATEMANAGER_H
 
-#include "InputSystem.h"
 #include "GameState.h"
 
 #include <string>
@@ -38,7 +37,6 @@ public:
     void toggleUpdates();
 
     void notify(std::string event, std::string message);
-    void sendInputToCurrentState();
 private:
     Game* game_ = nullptr;
     GameState* currentState_ = nullptr;
@@ -50,7 +48,6 @@ private:
     std::list<GameState*> oldStates_;
     bool closeRequested_;
     bool showUpdates_;
-    demo::InputSystem nullInputSystem_;
 };
 
 #endif //STATEMANAGER_H

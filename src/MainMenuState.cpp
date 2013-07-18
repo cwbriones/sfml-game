@@ -8,7 +8,7 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <cstdlib>
 
-MainMenuState::MainMenuState() : menu_(&inputSystem_, "../res/Arial.ttf") { 
+MainMenuState::MainMenuState() : menu_("../res/Arial.ttf") { 
     name_ = "Main Menu";
 }
 
