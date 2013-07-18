@@ -15,14 +15,21 @@ GameplayState::GameplayState() {
     }
     text_.setFont(font_);
     text_.setCharacterSize(12);
-    text_.setString("This is where your gameplay would occur.");
 
     inputContext_.bindKeyEvent("Exit to Menu", 
             sf::Event::KeyPressed, 
             sf::Keyboard::Key::Escape);
+    inputContext_.bindKeyEvent("RotateCCW",
+            sf::Event::KeyPressed,
+            sf::Keyboard::Key::A);
+    inputContext_.bindKeyEvent("RotateCW",
+            sf::Event::KeyPressed,
+            sf::Keyboard::Key::D);
 }
 
 GameplayState::~GameplayState(){
+    delete player_;
+
     while(!entities_.empty()){
         delete entities_.back();
         entities_.pop_back();
@@ -33,21 +40,27 @@ void GameplayState::checkForInput(sf::Event& ev){
     if (inputContext_.testEvent("Exit to Menu", ev)){
         manager_->clearToState(new MainMenuState());
     }
+    else if (inputContext_.testEvent("RotateCW", ev)){
+        player_->rotate(4.0);
+    } 
+    else if (inputContext_.testEvent("RotateCCW", ev)){
+        player_->rotate(-4.0);
+    }
 }
 
 void GameplayState::createEntities(){
-    entities_.push_back(factory_.createPlayer(100, 100, 0, 0));
+    player_ = factory_.createPlayer(100, 100, 0, 0);
 }
 
 void GameplayState::update(sf::Time delta){
+    player_->update(delta.asMilliseconds());
     for ( auto entity : entities_ ){
         entity->update(delta.asMilliseconds());
     }
 }
 
 void GameplayState::render(sf::RenderTarget* target){
-    target->draw(text_);
-
+    player_->render(*target);
     for ( auto entity : entities_ ){
         entity->render(*target); // TODO: Fix this. IE make render accept a RenderTarget reference everywhere
     }

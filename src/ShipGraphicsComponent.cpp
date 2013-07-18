@@ -25,8 +25,8 @@ ShipGraphicsComponent::ShipGraphicsComponent() {
 
 void ShipGraphicsComponent::update(Entity& entity, int delta){
     // rotation_ += ROTATION_RATE * delta;
-    const float ROTATION_RATE = 0.00628f * 2.0f;
-    entity.rotate(ROTATION_RATE * delta);
+    // const float ROTATION_RATE = 0.00628f * 2.0f;
+    // entity.rotate(ROTATION_RATE * delta);
 }
 
 sf::Vector2f ShipGraphicsComponent::getCenter(){

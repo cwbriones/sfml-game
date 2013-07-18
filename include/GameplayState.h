@@ -27,6 +27,8 @@ class GameplayState : public GameState {
         sf::Text text_;
 
         demo::EntityFactory factory_;
+
+        demo::Entity* player_;
         std::list<demo::Entity*> entities_;
 };
 
