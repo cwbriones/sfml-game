@@ -31,3 +31,7 @@ void MainMenuState::update(sf::Time delta){
 void MainMenuState::render(sf::RenderTarget* target){
     menu_.render(target);
 }
+
+void MainMenuState::checkForInput(sf::Event& ev){
+
+}

@@ -7,11 +7,9 @@
 class CreditsState : public GameState {
     public:
         CreditsState();
-        void update(sf::Time delta);
-        void render(sf::RenderTarget* target);
-        
-        void onKeyPressed(int keycode);
-        void onKeyReleased(int keycode);
+        void update(sf::Time delta) override;
+        void render(sf::RenderTarget* target) override;
+        void checkForInput(sf::Event& ev) override;
     private:
         sf::Text text_;
         sf::Font font_;

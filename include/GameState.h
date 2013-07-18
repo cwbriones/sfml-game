@@ -1,6 +1,9 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
+#include "InputContext.h"
+
+#include <SFML/Window/Event.hpp>
 #include <SFML/Graphics.hpp>
 
 #include <string>
@@ -22,6 +25,7 @@ public:
         name_(name), manager_(manager) {};
 
     virtual void update(sf::Time delta) = 0;
+    virtual void checkForInput(sf::Event& ev) = 0;
     virtual void render(sf::RenderTarget* target) = 0;
 
     virtual void onEnter(){};
@@ -41,6 +45,7 @@ public:
 protected:
     std::string name_ = "";
     StateManager* manager_ = nullptr;
+    demo::InputContext inputContext_;
 };
 
 #endif // GAMESTATE_H

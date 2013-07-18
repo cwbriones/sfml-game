@@ -16,10 +16,11 @@ class GameplayState : public GameState {
 
         // Implementation : GameState
 
-        virtual void update(sf::Time delta) override;
-        virtual void render(sf::RenderTarget* target) override;
+        void update(sf::Time delta) override;
+        void render(sf::RenderTarget* target) override;
+        void checkForInput(sf::Event& ev) override;
 
-        virtual void onEnter() override;
+        void onEnter() override;
         void createEntities(); 
     private:
         sf::Font font_;

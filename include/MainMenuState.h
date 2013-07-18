@@ -12,7 +12,8 @@ class MainMenuState : public GameState {
 
         // Implementation : GameState
 
-        void update(sf::Time delta);
+        void update(sf::Time delta) override;
+        void checkForInput(sf::Event& ev) override;
         void render(sf::RenderTarget* target) override;
 
         void onEnter();

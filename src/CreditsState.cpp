@@ -22,11 +22,6 @@ void CreditsState::render(sf::RenderTarget* target){
     target->draw(text_);
 }
 
-void CreditsState::onKeyPressed(int keycode){
-    if(keycode == sf::Keyboard::Escape){
-        manager_->popState();
-    }
-}
+void CreditsState::checkForInput(sf::Event& ev){
 
-void CreditsState::onKeyReleased(int keycode){
 }

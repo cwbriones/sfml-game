@@ -25,6 +25,10 @@ GameplayState::~GameplayState(){
     }
 }
 
+void GameplayState::checkForInput(sf::Event& ev){
+
+}
+
 void GameplayState::createEntities(){
     entities_.push_back(factory_.createPlayer(100, 100, 0, 0));
 }

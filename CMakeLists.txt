@@ -28,11 +28,10 @@ add_executable(${EXECUTABLE_NAME}
                 src/ShipGraphicsComponent.cpp
                 src/Entity.cpp
                 src/EntityFactory.cpp
-                src/InputSystem.cpp
 
                 src/Menu/Menu.cpp
                 src/Menu/Button.cpp
-                src/Menu/MenuKeyListener.cpp
+                src/InputContext.cpp
 )
 
 #Set compiler flags
