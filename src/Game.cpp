@@ -48,12 +48,12 @@ void Game::gameLoop() {
         // User input/events
 		while ( window_.pollEvent(event) ){
 
-            if ( closeRequested(event) || stateManager_.closeRequested() ){
+            if ( closeRequested(event) ){
                 if (stateManager_.currentState()->readyForClose()){
                     window_.close();
                 }
 	        } else {
-
+                stateManager_.currentState()->checkForInput(event);
             }
 		}
         // Game updates
@@ -79,7 +79,7 @@ void Game::gameLoop() {
             oversleepTime = sf::Time::Zero;
 
             if(++numDelays > NUM_DELAYS_PER_YIELD){
-                // Let other threads do stuff
+                // Let other threads dotuff
                 // This won't actually do anything yet
             }
         }
@@ -98,8 +98,7 @@ void Game::gameLoop() {
 
 bool Game::closeRequested(sf::Event& event){
     return event.type == sf::Event::Closed ||
-        (event.type == sf::Event::KeyPressed && 
-            event.key.code == sf::Keyboard::Escape);
+        stateManager_.closeRequested();
 }
 
 void Game::cleanup(){

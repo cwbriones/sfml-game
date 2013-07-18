@@ -16,8 +16,21 @@ InputContext::~InputContext(){
 
 }
 
-bool testEvent(std::string action, sf::Event ev){
-    return false;
+bool InputContext::testEvent(std::string action, sf::Event& ev){
+
+   if (bindings_.find(action) != bindings_.end()){
+        InputEvent& myEvent = bindings_.at(action);
+
+        // Keyboard Input
+        if (myEvent.inputType == Keyboard &&
+            myEvent.ev.type == ev.type &&
+            myEvent.ev.key.code == ev.key.code){
+
+            return true;
+        }
+   }
+
+   return false;
 }
 
 void InputContext::bindKeyEvent(std::string action, sf::Event::EventType type, int keycode){

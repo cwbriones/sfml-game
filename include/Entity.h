@@ -4,7 +4,6 @@
 #include "Vector2.h"
 #include "Component/GraphicsComponent.h"
 #include "Component/PhysicsComponent.h"
-#include "Component/Input/InputComponent.h"
 
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
@@ -31,13 +30,11 @@ public:
     void update(int delta);
     void render(sf::RenderTarget& target);
 
-    void addInput(InputComponent* input);
     void addPhysics(PhysicsComponent* physics);
     void addGraphics(GraphicsComponent* graphics);
 private:
     sf::Vector2f velocity_;
 
-    InputComponent* input_;
     PhysicsComponent* physics_;
     GraphicsComponent* graphics_;
 

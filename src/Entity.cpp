@@ -5,7 +5,6 @@ namespace demo {
 
 Entity::Entity() : velocity_(0, 0), alive_(true), id_("null") {
 
-    input_ = nullptr;
     graphics_ = nullptr;
     physics_ = nullptr;
 
@@ -17,7 +16,6 @@ Entity::Entity(std::string id, float x, float y, float vx, float vy) :
         alive_(true),
         id_(id) {
 
-    input_ = nullptr;
     graphics_ = nullptr;
     physics_ = nullptr;
 
@@ -31,9 +29,6 @@ Entity::~Entity(){
     if(physics_){
         delete physics_;
     }
-    if(input_){
-        delete input_;
-    }
 }
 
 void Entity::update(int delta){
@@ -42,9 +37,6 @@ void Entity::update(int delta){
     }
     if (physics_){
         physics_->update(*this, delta);
-    }
-    if (input_){
-        input_->update(*this, delta);
     }
 }
 
@@ -63,12 +55,6 @@ void Entity::addGraphics(GraphicsComponent* graphics){
 void Entity::addPhysics(PhysicsComponent* physics){
     if (!physics_){
         this->physics_ = physics;
-    }
-}
-
-void Entity::addInput(InputComponent* input){
-    if (!input_){
-        this->input_ = input;
     }
 }
 

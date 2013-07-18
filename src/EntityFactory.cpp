@@ -1,7 +1,6 @@
 #include "Entity.h"
 #include "EntityFactory.h"
 
-#include "InputSystem.h"
 #include "Component/ShipGraphicsComponent.h"
 
 namespace demo {

@@ -16,6 +16,10 @@ GameplayState::GameplayState() {
     text_.setFont(font_);
     text_.setCharacterSize(12);
     text_.setString("This is where your gameplay would occur.");
+
+    inputContext_.bindKeyEvent("Exit to Menu", 
+            sf::Event::KeyPressed, 
+            sf::Keyboard::Key::Escape);
 }
 
 GameplayState::~GameplayState(){
@@ -26,7 +30,9 @@ GameplayState::~GameplayState(){
 }
 
 void GameplayState::checkForInput(sf::Event& ev){
-
+    if (inputContext_.testEvent("Exit to Menu", ev)){
+        manager_->clearToState(new MainMenuState());
+    }
 }
 
 void GameplayState::createEntities(){

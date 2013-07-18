@@ -33,7 +33,7 @@ public:
     void bindKeyEvent(std::string action, sf::Event::EventType type, int keycode);
     std::vector<std::string> getAvailableActions();
 
-    bool testEvent(std::string action, sf::Event ev);
+    bool testEvent(std::string action, sf::Event& ev);
 private:
     std::map< std::string, InputEvent > bindings_;
 }; // InputContext
